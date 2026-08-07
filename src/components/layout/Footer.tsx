@@ -1,9 +1,20 @@
 import Link from "next/link";
 
+interface FooterLink {
+  name: string;
+  href: string;
+  external?: boolean;
+}
+
+interface FooterSection {
+  title: string;
+  links: FooterLink[];
+}
+
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
-  const footerSections = [
+  const footerSections: FooterSection[] = [
     {
       title: "Product",
       links: [
@@ -22,13 +33,6 @@ export default function Footer() {
         { name: "FAQ", href: "/faq" },
       ],
     },
-    // {
-    //   title: "Social",
-    //   links: [
-    //     { name: "X/Twitter", href: "https://twitter.com", external: true },
-    //     { name: "LinkedIn", href: "https://linkedin.com", external: true },
-    //   ],
-    // },
     {
       title: "Legal",
       links: [
@@ -40,7 +44,6 @@ export default function Footer() {
           href: "/communications-consent",
         },
         { name: "Fair Lending Policy", href: "/fair-lending-policy" },
-        { name: "Rates & Fees", href: "/rates-and-fees" },
         { name: "State Disclosures", href: "/state-disclosures" },
         { name: "Security Policy", href: "/security-policy" },
         { name: "Cookie Policy", href: "/cookie-policy" },
@@ -50,21 +53,22 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="relative bg-[#030712] text-[#e2d6e6] pt-16 pb-0 overflow-hidden font-sans border-t border-white/10">
+    <footer className="relative bg-[#030712] text-slate-300 pt-16 pb-12 font-sans border-t border-white/10">
       {/* Main Footer Container */}
-      <div className="max-w-7xl mx-auto px-6  relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 pb-16">
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           {/* Left Column: Brand & Info */}
           <div className="lg:col-span-5 space-y-6">
             {/* Logo */}
             <Link
               href="/"
-              className="inline-flex items-center gap-2 text-white font-bold text-xl tracking-tight"
+              className="inline-flex items-center gap-2 text-white font-bold text-xl tracking-tight hover:opacity-90 transition-opacity"
             >
               <svg
                 className="w-6 h-6 text-white"
                 viewBox="0 0 24 24"
                 fill="currentColor"
+                aria-hidden="true"
               >
                 <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
               </svg>
@@ -72,14 +76,14 @@ export default function Footer() {
             </Link>
 
             {/* Subtext Description */}
-            <p className="text-white text-sm leading-relaxed max-w-sm">
+            <p className="text-slate-400 text-sm leading-relaxed max-w-sm">
               Ryer Loans provides fixed-rate personal loans with transparent
               terms, no hidden fees, and straightforward online application
               processing.
             </p>
 
             {/* Copyright */}
-            <p className="text-white text-xs pt-2">
+            <p className="text-slate-500 text-xs pt-2">
               Ryer Loans, Inc. © {currentYear}
             </p>
           </div>
@@ -93,12 +97,12 @@ export default function Footer() {
                 </h3>
                 <ul className="space-y-3 text-sm">
                   {section.links.map((link) => (
-                    <li key={link.name}>
+                    <li key={`${section.title}-${link.name}`}>
                       <Link
                         href={link.href}
                         target={link.external ? "_blank" : undefined}
                         rel={link.external ? "noopener noreferrer" : undefined}
-                        className="text-white hover:text-white transition-colors duration-150"
+                        className="text-slate-400 hover:text-white transition-colors duration-150"
                       >
                         {link.name}
                       </Link>
@@ -110,13 +114,6 @@ export default function Footer() {
           </div>
         </div>
       </div>
-
-      {/* Large Bottom Watermark Text */}
-      {/* <div className="w-full overflow-hidden select-none pointer-events-none leading-none -mb-4 sm:-mb-8 md:-mb-12">
-        <h2 className="text-[18vw] font-extrabold text-center tracking-tighter text-white opacity-80 whitespace-nowrap">
-          ryer loans
-        </h2>
-      </div> */}
     </footer>
   );
 }

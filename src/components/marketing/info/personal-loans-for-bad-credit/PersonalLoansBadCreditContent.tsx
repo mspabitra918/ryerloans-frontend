@@ -137,17 +137,17 @@ export default function PersonalLoansBadCreditContent() {
                 Section 01
               </div>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-                1. What "Bad Credit" Actually Means — FICO Bands &amp;
-                Distribution
+                1. What &ldquo;Bad Credit&ldquo; Actually Means — FICO Bands
+                &amp; Distribution
               </h2>
             </div>
 
             <p className="text-slate-600 leading-relaxed">
-              In modern consumer finance, "bad credit" is an informal term
-              broadly applied to credit scores falling below standard prime
-              underwriting thresholds. The most widely referenced model, FICO®
-              Score 8, categorizes consumer credit files across five distinct
-              tiers:
+              In modern consumer finance, &ldquo;bad credit&ldquo; is an
+              informal term broadly applied to credit scores falling below
+              standard prime underwriting thresholds. The most widely referenced
+              model, FICO® Score 8, categorizes consumer credit files across
+              five distinct tiers:
             </p>
 
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -358,7 +358,7 @@ export default function PersonalLoansBadCreditContent() {
                 Section 04
               </div>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-                4. Why We Don't Use a Minimum Score Cutoff
+                4. Why We Don&apos;t Use a Minimum Score Cutoff
               </h2>
             </div>
 
@@ -413,12 +413,12 @@ export default function PersonalLoansBadCreditContent() {
                 <span>Approval Is Never Guaranteed</span>
               </div>
               <p className="text-sm text-slate-700 leading-relaxed">
-                Ryer Loans does not offer "guaranteed approval." Any platform or
-                website making guaranteed approval promises is operating either
-                illegally or through predatory fee-harvesting mechanisms.
-                Responsible lending requires verifying that every loan extended
-                aligns with a borrower's actual ability to repay without causing
-                financial distress.
+                Ryer Loans does not offer &ldquo;guaranteed approval.&ldquo; Any
+                platform or website making guaranteed approval promises is
+                operating either illegally or through predatory fee-harvesting
+                mechanisms. Responsible lending requires verifying that every
+                loan extended aligns with a borrower&apos;s actual ability to
+                repay without causing financial distress.
               </p>
             </div>
           </section>
@@ -616,7 +616,7 @@ export default function PersonalLoansBadCreditContent() {
                       <td className="p-4 font-mono">10.00% – 18.00%</td>
                       <td className="p-4">None</td>
                       <td className="p-4">
-                        Leverages co-signer's credit profile
+                        Leverages co-signer&apos;s credit profile
                       </td>
                       <td className="p-4">
                         Co-signer shares full financial liability
