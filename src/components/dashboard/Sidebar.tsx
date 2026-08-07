@@ -14,13 +14,37 @@ import {
 interface SidebarProps {
   isOpen: boolean;
   onClose: () => void;
+  activePath?: string;
 }
 
-export function Sidebar({ isOpen, onClose }: SidebarProps) {
-  const sidebarNavItems = [
-    { name: "Dashboard", icon: LayoutDashboard, href: "#" },
-    { name: "Users", icon: User, href: "#" },
-    { name: "Contact", icon: PhoneCall, href: "#" },
+interface NavItem {
+  name: string;
+  icon: React.ElementType;
+  href: string;
+  active?: boolean;
+  badge?: string;
+}
+
+export function Sidebar({ isOpen, onClose, activePath = "#" }: SidebarProps) {
+  const sidebarNavItems: NavItem[] = [
+    {
+      name: "Dashboard",
+      icon: LayoutDashboard,
+      href: "#",
+      active: activePath === "#",
+    },
+    {
+      name: "Users",
+      icon: User,
+      href: "#users",
+      active: activePath === "#users",
+    },
+    {
+      name: "Contact",
+      icon: PhoneCall,
+      href: "#contact",
+      active: activePath === "#contact",
+    },
   ];
 
   return (
@@ -42,33 +66,21 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
         <div>
           {/* Top Header Logo & Actions */}
           <div className="flex items-center justify-end pb-6">
-            {/* <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-md border border-white/30 flex items-center justify-center font-bold text-lg text-white">
-                ✕
-              </div>
-            </div> */}
             <div className="flex items-center gap-3 text-slate-300">
               <Search className="w-5 h-5 cursor-pointer hover:text-white transition-colors" />
               <Bell className="w-5 h-5 cursor-pointer hover:text-white transition-colors" />
-              <button onClick={onClose} className="lg:hidden text-white ml-2">
+              <button
+                onClick={onClose}
+                className="lg:hidden text-white ml-2 focus:outline-none"
+                aria-label="Close sidebar"
+              >
                 <X className="w-6 h-6" />
               </button>
             </div>
           </div>
 
-          {/* Free Trial Banner */}
-          {/* <div className="bg-[#1b3783] rounded-lg p-3.5 mb-6 space-y-2">
-            <div className="flex justify-between text-xs font-semibold">
-              <span className="text-white">Free trial</span>
-              <span className="text-slate-300">20 days left</span>
-            </div>
-            <div className="w-full bg-[#2b4fa8] h-1.5 rounded-full overflow-hidden">
-              <div className="bg-emerald-400 h-full w-[40%]" />
-            </div>
-          </div> */}
-
           {/* Navigation Links */}
-          <nav className="space-y-1 overflow-y-auto max-h-[calc(100vh-320px)] lg:max-h-none">
+          <nav className="space-y-1 overflow-y-auto max-h-[calc(100vh-160px)] lg:max-h-none">
             {sidebarNavItems.map((item) => (
               <a
                 key={item.name}
@@ -95,22 +107,6 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
 
         {/* Sidebar Footer Section */}
         <div className="pt-4 border-t border-[#2b4fa8]/50 space-y-2">
-          {/* <a
-            href="#"
-            className="flex items-center gap-3 text-amber-300 hover:text-amber-200 text-sm font-medium px-3 py-1"
-          >
-            <Gift className="w-4 h-4" />
-            <span>Get 1 Month Free</span>
-          </a> */}
-
-          {/* <a
-            href="#"
-            className="flex items-center gap-3 text-slate-300 hover:text-white text-sm font-medium px-3 py-1"
-          >
-            <HelpCircle className="w-4 h-4" />
-            <span>Help & Support</span>
-          </a> */}
-
           {/* User Profile */}
           <div className="flex items-center justify-between pt-2 px-3">
             <div className="flex items-center gap-2.5">
@@ -119,7 +115,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
               </div>
               <span className="text-sm font-medium text-white">Jane Smith</span>
             </div>
-            <ChevronDown className="w-4 h-4 text-slate-300 cursor-pointer" />
+            <ChevronDown className="w-4 h-4 text-slate-300 cursor-pointer hover:text-white transition-colors" />
           </div>
         </div>
       </aside>
