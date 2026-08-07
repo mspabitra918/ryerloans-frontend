@@ -19,11 +19,7 @@ export const metadata = constructMetadata({
 export default function PersonalLoansBadCreditPage() {
   return (
     <main className="min-h-screen bg-slate-50 text-slate-800 font-sans">
-      <PersonalLoansHero
-        badge="Credit Inclusion Guide"
-        title="Personal Loans for Bad Credit: What Actually Matters"
-        subtitle="Understanding how traditional underwriting penalizes past credit mistakes, what modern lenders look at instead, and how to position your application for success."
-      />
+      <PersonalLoansHero />
       <div className="py-16 px-4 max-w-7xl mx-auto space-y-12">
         <PersonalLoansBadCreditContent />
       </div>
