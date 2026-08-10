@@ -3,7 +3,7 @@ import { RATE_CONFIG } from "@/src/lib/config";
 export default function ReadyToStart() {
   return (
     <section className="py-20 px-4 bg-[#030712] border-t border-[#1f293d]/50 text-center font-mono">
-      <div className="max-w-5xl mx-auto space-y-6">
+      <div className="max-w-6xl mx-auto space-y-6">
         <h2 className="text-3xl sm:text-4xl font-sans font-semibold text-white tracking-tight">
           Ready to Start?
         </h2>

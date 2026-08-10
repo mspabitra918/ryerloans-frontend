@@ -133,9 +133,6 @@ export default function PersonalLoansBadCreditContent() {
             className="space-y-6 scroll-mt-24"
           >
             <div className="space-y-2">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-semibold">
-                Section 01
-              </div>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
                 1. What &ldquo;Bad Credit&ldquo; Actually Means — FICO Bands
                 &amp; Distribution
@@ -230,9 +227,6 @@ export default function PersonalLoansBadCreditContent() {
           {/* SECTION 2 */}
           <section id="lagging-indicator" className="space-y-6 scroll-mt-24">
             <div className="space-y-2">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-semibold">
-                Section 02
-              </div>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
                 2. Why Your Credit Score is a Lagging Indicator of Your Finances
               </h2>
@@ -282,9 +276,6 @@ export default function PersonalLoansBadCreditContent() {
             className="space-y-6 scroll-mt-24"
           >
             <div className="space-y-2">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-semibold">
-                Section 03
-              </div>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
                 3. What We Look at Instead: Cash Flow &amp; Financial Stability
               </h2>
@@ -354,9 +345,6 @@ export default function PersonalLoansBadCreditContent() {
           {/* SECTION 4 */}
           <section id="no-minimum-cutoff" className="space-y-6 scroll-mt-24">
             <div className="space-y-2">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-semibold">
-                Section 04
-              </div>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
                 4. Why We Don&apos;t Use a Minimum Score Cutoff
               </h2>
@@ -399,9 +387,6 @@ export default function PersonalLoansBadCreditContent() {
             className="space-y-6 scroll-mt-24"
           >
             <div className="space-y-2">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-semibold">
-                Section 05
-              </div>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
                 5. What We Cannot Promise: Plain Statement on Approval
               </h2>
@@ -426,9 +411,6 @@ export default function PersonalLoansBadCreditContent() {
           {/* SECTION 6 */}
           <section id="improve-your-odds" className="space-y-6 scroll-mt-24">
             <div className="space-y-2">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-semibold">
-                Section 06
-              </div>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
                 6. How to Improve Your Odds Before Applying
               </h2>
@@ -490,9 +472,6 @@ export default function PersonalLoansBadCreditContent() {
             className="space-y-6 scroll-mt-24"
           >
             <div className="space-y-2">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-semibold">
-                Section 07
-              </div>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
                 7. Warning Signs of a Predatory Bad-Credit Lender
               </h2>
@@ -558,9 +537,6 @@ export default function PersonalLoansBadCreditContent() {
             className="space-y-6 scroll-mt-24"
           >
             <div className="space-y-2">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-semibold">
-                Section 08
-              </div>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
                 8. Bad Credit Loan Options Compared
               </h2>
@@ -645,9 +621,6 @@ export default function PersonalLoansBadCreditContent() {
             className="space-y-6 scroll-mt-24"
           >
             <div className="space-y-2">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-semibold">
-                Section 09
-              </div>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
                 9. Frequently Asked Questions
               </h2>

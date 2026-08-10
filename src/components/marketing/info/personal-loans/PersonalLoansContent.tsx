@@ -127,9 +127,6 @@ export default function PersonalLoansContent() {
             className="space-y-6 scroll-mt-24"
           >
             <div className="space-y-2">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-semibold">
-                Section 01
-              </div>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
                 1. What a Personal Loan Actually Is
               </h2>
@@ -221,9 +218,6 @@ export default function PersonalLoansContent() {
             className="space-y-6 scroll-mt-24"
           >
             <div className="space-y-2">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-semibold">
-                Section 02
-              </div>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
                 2. Personal Loan vs. Credit Card vs. HELOC vs. Payday Loan
               </h2>
@@ -313,9 +307,6 @@ export default function PersonalLoansContent() {
             className="space-y-6 scroll-mt-24"
           >
             <div className="space-y-2">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-semibold">
-                Section 03
-              </div>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
                 3. What Determines Your Rate at Most Lenders — And Why Ryer
                 Publishes One
@@ -365,9 +356,6 @@ export default function PersonalLoansContent() {
             className="space-y-6 scroll-mt-24"
           >
             <div className="space-y-2">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-semibold">
-                Section 04
-              </div>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
                 4. The Real Cost of Borrowing — Worked Examples
               </h2>
@@ -474,9 +462,6 @@ export default function PersonalLoansContent() {
           {/* SECTION 5 */}
           <section id="what-lenders-look-at" className="space-y-6 scroll-mt-24">
             <div className="space-y-2">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-semibold">
-                Section 05
-              </div>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
                 5. What Lenders Look At: Income, DTI, Banking History, Credit
               </h2>
@@ -557,9 +542,6 @@ export default function PersonalLoansContent() {
             className="space-y-6 scroll-mt-24"
           >
             <div className="space-y-2">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-semibold">
-                Section 06
-              </div>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
                 6. How to Compare Offers — APR, Not Interest Rate; Total Cost,
                 Not Monthly Payment
@@ -605,9 +587,6 @@ export default function PersonalLoansContent() {
             className="space-y-6 scroll-mt-24"
           >
             <div className="space-y-2">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-semibold">
-                Section 07
-              </div>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
                 7. Common Borrowing Mistakes to Avoid
               </h2>
@@ -654,9 +633,6 @@ export default function PersonalLoansContent() {
             className="space-y-6 scroll-mt-24"
           >
             <div className="space-y-2">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-semibold">
-                Section 08
-              </div>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
                 8. Frequently Asked Questions
               </h2>

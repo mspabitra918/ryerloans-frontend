@@ -137,9 +137,6 @@ export default function EmergencyLoansContent() {
             className="space-y-6 scroll-mt-24"
           >
             <div className="space-y-2">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-semibold">
-                Section 01
-              </div>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
                 1. What Counts as a True Emergency Expense?
               </h2>
@@ -202,9 +199,9 @@ export default function EmergencyLoansContent() {
             className="space-y-6 scroll-mt-24"
           >
             <div className="space-y-2">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-semibold">
+              {/* <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-semibold">
                 Section 02
-              </div>
+              </div> */}
               <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
                 2. Realistic Funding Timelines: The Truth About "Same-Day"
                 Funding
@@ -275,9 +272,9 @@ export default function EmergencyLoansContent() {
             className="space-y-6 scroll-mt-24"
           >
             <div className="space-y-2">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-semibold">
+              {/* <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-semibold">
                 Section 03
-              </div>
+              </div> */}
               <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
                 3. Common Legitimate Emergency Use Cases
               </h2>
@@ -359,9 +356,9 @@ export default function EmergencyLoansContent() {
             className="space-y-6 scroll-mt-24"
           >
             <div className="space-y-2">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-semibold">
+              {/* <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-semibold">
                 Section 04
-              </div>
+              </div> */}
               <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
                 4. Alternatives to Check Before Applying for a Loan
               </h2>
@@ -431,9 +428,9 @@ export default function EmergencyLoansContent() {
             className="space-y-6 scroll-mt-24"
           >
             <div className="space-y-2">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-semibold">
+              {/* <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-semibold">
                 Section 05
-              </div>
+              </div> */}
               <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
                 5. When Borrowing is the Right Call vs. When It Is Not
               </h2>
@@ -504,9 +501,9 @@ export default function EmergencyLoansContent() {
             className="space-y-6 scroll-mt-24"
           >
             <div className="space-y-2">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-semibold">
-                Section 06
-              </div>
+              {/* <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-semibold"> */}
+              {/* Section 06 */}
+              {/* </div> */}
               <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
                 6. How to Avoid Emergency-Loan Scams
               </h2>
@@ -578,9 +575,9 @@ export default function EmergencyLoansContent() {
             className="space-y-6 scroll-mt-24"
           >
             <div className="space-y-2">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-semibold">
+              {/* <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-semibold">
                 Section 07
-              </div>
+              </div> */}
               <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
                 7. Frequently Asked Questions
               </h2>

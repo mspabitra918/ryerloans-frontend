@@ -1,7 +1,7 @@
 export default function CreditEvaluation() {
   return (
     <section className="py-16 px-4 bg-[#030712] border-t border-[#1f293d]/50 text-gray-300">
-      <div className="max-w-5xl mx-auto space-y-6">
+      <div className="max-w-6xl mx-auto space-y-6">
         <h2 className="text-2xl sm:text-3xl font-sans font-semibold text-white tracking-tight">
           Every Credit Profile Gets a Real Look
         </h2>
