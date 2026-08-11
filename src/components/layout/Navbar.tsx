@@ -26,7 +26,7 @@ export default function Navbar() {
     { name: "About Us", href: "/about" },
     { name: "FAQ", href: "/faq" },
     { name: "Contact Us", href: "/contact" },
-    // { name: "Reviews", href: "/reviews" },
+    { name: "California Hub", href: "/personal-loans/california" },
   ];
 
   const resourceLinks = [
