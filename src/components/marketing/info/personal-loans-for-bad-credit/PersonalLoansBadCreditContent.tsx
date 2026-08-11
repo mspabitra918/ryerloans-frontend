@@ -371,7 +371,7 @@ export default function PersonalLoansBadCreditContent() {
                   </div>
                 </div>
                 <Link
-                  href="/borrower-requirements"
+                  href="/"
                   className="inline-flex items-center justify-center gap-2 bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold text-xs px-5 py-2.5 rounded-lg transition"
                 >
                   <span>View Eligibility Standards</span>

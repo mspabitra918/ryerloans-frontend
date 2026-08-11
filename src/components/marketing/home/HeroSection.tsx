@@ -22,7 +22,7 @@ export default function HeroSection() {
         </div>
 
         <h1 className="mt-8 max-w-4xl text-4xl font-semibold tracking-tight text-slate-50 sm:text-5xl lg:text-6xl">
-          Personal loans from $2,000 to $25,000 with a clear, fixed rate.
+          Personal Loans From $2,000 to $25,000 at a Fixed 10.00% APR.
         </h1>
 
         <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300 sm:text-xl">

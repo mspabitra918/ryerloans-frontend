@@ -247,7 +247,7 @@ export default function PersonalLoansContent() {
                         <span className="w-2 h-2 rounded-full bg-sky-500" />
                         Ryer Personal Loan
                       </td>
-                      <td className="p-4">None (Unsecured)</td>
+                      <td className="p-4">None</td>
                       <td className="p-4 font-medium text-slate-900">Fixed</td>
                       <td className="p-4 font-mono font-bold text-emerald-600 bg-emerald-50 px-2 py-1 rounded w-fit">
                         10.00% Fixed APR
