@@ -18,7 +18,13 @@ interface EconomyProps {
   source: string;
 }
 
-export default function LocalEconomy({ data }: { data: EconomyProps }) {
+export default function LocalEconomy({
+  data,
+  city,
+}: {
+  data: EconomyProps;
+  city: string;
+}) {
   const metrics = [
     {
       label: "Population",
@@ -38,7 +44,7 @@ export default function LocalEconomy({ data }: { data: EconomyProps }) {
   ];
 
   return (
-    <section className="bg-white py-20 border-b border-slate-200/80">
+    <section className="bg-white  border-slate-200/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="relative overflow-hidden rounded-3xl bg-slate-50/60 p-8 sm:p-12 border border-slate-200/80 shadow-xl shadow-slate-100/80">
           {/* Main Layout Grid */}
@@ -51,7 +57,7 @@ export default function LocalEconomy({ data }: { data: EconomyProps }) {
               </div>
 
               <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-                The Local Economy
+                The {city} Economy
               </h2>
 
               <div className="space-y-4 pt-2">
@@ -101,7 +107,7 @@ export default function LocalEconomy({ data }: { data: EconomyProps }) {
           </div>
 
           {/* Bottom Secondary Grid */}
-          <div className="mt-10 pt-8 border-t border-slate-200/80 grid gap-6 md:grid-cols-2">
+          <div className="mt-10 pt-8 border-t border-slate-200/80 grid gap-6">
             {/* Major Employers Card */}
             <div className="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm space-y-4">
               <div className="flex items-center gap-2.5">
@@ -113,7 +119,7 @@ export default function LocalEconomy({ data }: { data: EconomyProps }) {
                 </h3>
               </div>
 
-              <ul className="grid gap-2.5 pt-2">
+              <ul className="flex flex-wrap  gap-2.5 pt-2">
                 {data.majorEmployers.map((employer) => (
                   <li
                     key={employer}

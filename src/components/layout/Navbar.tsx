@@ -6,8 +6,63 @@ import Link from "next/link";
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isResourcesOpen, setIsResourcesOpen] = useState(false);
+
   const resourcesRef = useRef<HTMLLIElement>(null);
 
+  const navLinks = [
+    { name: "About Us", href: "/about" },
+    { name: "FAQ", href: "/faq" },
+    { name: "Contact Us", href: "/contact" },
+    {
+      name: "California Hub",
+      href: "/personal-loans/california",
+    },
+  ];
+
+  const resourceLinks = [
+    {
+      name: "Personal Loans",
+      href: "/personal-loans",
+    },
+    {
+      name: "Bad Credit Loans",
+      href: "/personal-loans-for-bad-credit",
+    },
+    {
+      name: "Installment Loans",
+      href: "/installment-loans",
+    },
+    {
+      name: "Emergency Loans",
+      href: "/emergency-loans",
+    },
+    {
+      name: "Debt Consolidation",
+      href: "/debt-consolidation-loans",
+    },
+    {
+      name: "Unsecured Loans",
+      href: "/unsecured-personal-loans",
+    },
+    {
+      name: "Loan Calculator",
+      href: "/personal-loan-calculator",
+    },
+    {
+      name: "No Credit Check",
+      href: "/no-credit-check-loans-explained",
+    },
+    {
+      name: "Approval Process",
+      href: "/how-personal-loan-approval-works",
+    },
+    {
+      name: "Rates & Terms",
+      href: "/personal-loan-rates-and-terms",
+    },
+  ];
+
+  // Close Resources dropdown when clicking outside
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (
@@ -19,225 +74,309 @@ export default function Navbar() {
     }
 
     document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
   }, []);
 
-  const navLinks = [
-    { name: "About Us", href: "/about" },
-    { name: "FAQ", href: "/faq" },
-    { name: "Contact Us", href: "/contact" },
-    { name: "California Hub", href: "/personal-loans/california" },
-  ];
+  // Prevent background page from scrolling when mobile menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
 
-  const resourceLinks = [
-    { name: "Personal Loans", href: "/personal-loans" },
-    { name: "Bad Credit Loans", href: "/personal-loans-for-bad-credit" },
-    { name: "Installment Loans", href: "/installment-loans" },
-    { name: "Emergency Loans", href: "/emergency-loans" },
-    { name: "Debt Consolidation", href: "/debt-consolidation-loans" },
-    { name: "Unsecured Loans", href: "/unsecured-personal-loans" },
-    { name: "Loan Calculator", href: "/personal-loan-calculator" },
-    { name: "No Credit Check", href: "/no-credit-check-loans-explained" },
-    { name: "Approval Process", href: "/how-personal-loan-approval-works" },
-    { name: "Rates & Terms", href: "/personal-loan-rates-and-terms" },
-  ];
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
+  // Close mobile menu when screen becomes desktop size
+  useEffect(() => {
+    function handleResize() {
+      if (window.innerWidth >= 768) {
+        setIsOpen(false);
+      }
+    }
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  // Close mobile menu and resources dropdown
+  function closeMobileMenu() {
+    setIsOpen(false);
+    setIsResourcesOpen(false);
+  }
 
   return (
-    <header className="p-4 bg-[#050b14] shadow-md  sticky top-0 z-50">
-      <nav className="w-full max-w-7xl mx-auto bg-[#050b14] border border-[#1f293d] rounded-lg px-6 py-3 font-mono text-gray-200 flex items-center justify-between">
-        {/* Logo */}
+    <header className="sticky top-0 z-50 bg-[#F8F6F0] p-4">
+      <nav className="mx-auto flex w-full max-w-7xl items-center justify-between rounded-lg border border-slate-200 bg-white px-6 py-3 shadow-sm">
+        {/* =========================================================
+            LOGO
+        ========================================================= */}
         <Link
           href="/"
-          className="flex items-center gap-2.5 text-white font-sans font-bold text-xl tracking-tight hover:opacity-90 transition-opacity z-10"
+          className="z-10 flex items-center gap-2.5 font-sans text-xl font-bold tracking-tight text-[#13294B] transition-opacity hover:opacity-80"
         >
           <svg
-            className="w-6 h-6 text-white"
+            className="h-6 w-6 text-[#1558D6]"
             viewBox="0 0 24 24"
             fill="currentColor"
+            aria-hidden="true"
           >
             <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
           </svg>
+
           <span>Ryer Loans</span>
         </Link>
 
-        {/* Desktop Navigation Links */}
-        <ul className="hidden md:flex items-center gap-8">
+        {/* =========================================================
+            DESKTOP NAVIGATION
+        ========================================================= */}
+        <ul className="hidden items-center gap-7 md:flex">
           {navLinks.map((link) => (
             <li key={link.name}>
               <Link
                 href={link.href}
-                className="text-gray-400 text-sm hover:text-white transition-colors"
+                className="text-sm font-medium text-slate-600 transition-colors hover:text-[#1558D6]"
               >
                 {link.name}
               </Link>
             </li>
           ))}
 
+          {/* Resources Dropdown */}
           <li className="relative" ref={resourcesRef}>
             <button
               type="button"
               onClick={() => setIsResourcesOpen((prev) => !prev)}
-              className="text-gray-400 text-sm hover:text-white transition-colors"
+              aria-expanded={isResourcesOpen}
+              className="flex items-center gap-1 text-sm font-medium text-slate-600 transition-colors hover:text-[#1558D6]"
             >
-              Resources{" "}
+              Resources
               {isResourcesOpen ? (
                 <svg
-                  className="w-4 h-4 inline-block ml-1"
+                  className="h-4 w-4"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
+                  aria-hidden="true"
                 >
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth="2"
-                    d="M5 15l7-7 7 7"
+                    d="m5 15 7-7 7 7"
                   />
                 </svg>
               ) : (
                 <svg
-                  className="w-4 h-4 inline-block ml-1"
+                  className="h-4 w-4"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
+                  aria-hidden="true"
                 >
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth="2"
-                    d="M19 9l-7 7-7-7"
+                    d="m19 9-7 7-7-7"
                   />
                 </svg>
               )}
             </button>
 
             {isResourcesOpen && (
-              <div className="absolute left-0 top-8 w-56 rounded-lg border border-[#1f293d] bg-[#050b14] p-2 shadow-lg">
-                {resourceLinks.map((link) => (
-                  <Link
-                    key={link.name}
-                    href={link.href}
-                    onClick={() => setIsResourcesOpen(false)}
-                    className="block rounded-md px-3 py-2 text-sm text-gray-300 hover:bg-slate-900 hover:text-white"
-                  >
-                    {link.name}
-                  </Link>
-                ))}
+              <div className="absolute left-0 top-8 z-50 w-60 rounded-xl border border-slate-200 bg-white p-2 shadow-xl">
+                <div className="max-h-[70vh] overflow-y-auto">
+                  {resourceLinks.map((link) => (
+                    <Link
+                      key={link.name}
+                      href={link.href}
+                      onClick={() => setIsResourcesOpen(false)}
+                      className="block rounded-lg px-3 py-2.5 text-sm text-slate-600 transition-colors hover:bg-blue-50 hover:text-[#1558D6]"
+                    >
+                      {link.name}
+                    </Link>
+                  ))}
+                </div>
               </div>
             )}
           </li>
         </ul>
 
-        {/* Desktop CTA Buttons */}
-        <div className="hidden md:flex items-center gap-3">
+        {/* =========================================================
+            DESKTOP CTA
+        ========================================================= */}
+        <div className="hidden items-center gap-3 md:flex">
           <Link
             href="/loan-status"
-            className="px-4 py-2 text-sm bg-transparent border border-[#1f293d] text-gray-200 rounded-md hover:bg-slate-900 hover:border-slate-700 transition-all"
+            className="rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-[#13294B] transition-all hover:border-blue-200 hover:bg-blue-50"
           >
             Loan Status
           </Link>
 
           <Link
             href="/apply"
-            className="px-4 py-2 text-sm bg-sky-100 border border-sky-100 text-slate-900 font-medium rounded-md hover:bg-sky-200 transition-all"
+            className="rounded-lg border border-[#1558D6] bg-[#1558D6] px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-[#0F47B0]"
           >
             Apply Now
           </Link>
         </div>
 
-        {/* Mobile Menu Toggle Button */}
+        {/* =========================================================
+            MOBILE MENU BUTTON
+        ========================================================= */}
         <button
-          onClick={() => setIsOpen(!isOpen)}
           type="button"
-          className="md:hidden text-gray-400 hover:text-white focus:outline-none p-1 z-50"
-          aria-label="Toggle menu"
+          onClick={() => setIsOpen((prev) => !prev)}
+          className="z-[60] rounded-lg p-2 text-slate-600 transition-colors hover:bg-slate-100 hover:text-[#1558D6] md:hidden"
+          aria-label={isOpen ? "Close menu" : "Open menu"}
+          aria-expanded={isOpen}
         >
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            {isOpen ? (
-              // Close / X Icon
+          {isOpen ? (
+            <svg
+              className="h-6 w-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth="2"
-                d="M6 18L18 6M6 6l12 12"
+                d="M6 18 18 6M6 6l12 12"
               />
-            ) : (
-              // Hamburger Icon
+            </svg>
+          ) : (
+            <svg
+              className="h-6 w-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth="2"
                 d="M4 6h16M4 12h16M4 18h16"
               />
-            )}
-          </svg>
+            </svg>
+          )}
         </button>
 
-        {/* Backdrop Dark Overlay */}
+        {/* =========================================================
+            MOBILE BACKDROP
+        ========================================================= */}
         <div
-          onClick={() => setIsOpen(false)}
-          className={`fixed inset-0 bg-black/60 backdrop-blur-sm z-40 transition-opacity duration-300 md:hidden ${
+          onClick={closeMobileMenu}
+          aria-hidden="true"
+          className={`fixed inset-0 z-40 bg-slate-950/50 backdrop-blur-sm transition-opacity duration-300 md:hidden ${
             isOpen
-              ? "opacity-100 pointer-events-auto"
-              : "opacity-0 pointer-events-none"
+              ? "pointer-events-auto opacity-100"
+              : "pointer-events-none opacity-0"
           }`}
         />
 
-        {/* Left-to-Right Sliding Mobile Menu */}
+        {/* =========================================================
+            MOBILE DRAWER
+
+            IMPORTANT:
+            - overflow-hidden = drawer itself doesn't scroll
+            - nav area below uses overflow-y-auto
+            - bottom buttons stay fixed
+        ========================================================= */}
         <aside
-          className={`fixed top-0 left-0 bottom-0 w-72 bg-[#050b14] border-r border-[#1f293d] p-6 z-50 transform transition-transform duration-300 ease-in-out md:hidden flex flex-col justify-between ${
+          aria-hidden={!isOpen}
+          className={`fixed inset-y-0 left-0 z-50 flex w-[300px] max-w-[85vw] flex-col border-r border-slate-200 bg-white shadow-2xl transition-transform duration-300 ease-in-out md:hidden ${
             isOpen ? "translate-x-0" : "-translate-x-full"
           }`}
         >
-          <div>
-            {/* Mobile Header Inside Drawer */}
-            <div className="flex items-center justify-between pb-6 border-b border-[#1f293d]">
-              <Link
-                href="/"
-                onClick={() => setIsOpen(false)}
-                className="flex items-center gap-2 text-white font-sans font-bold text-lg"
+          {/* =====================================================
+              MOBILE DRAWER HEADER
+          ===================================================== */}
+          <div className="flex shrink-0 items-center justify-between border-b border-slate-200 px-6 py-5">
+            <Link
+              href="/"
+              onClick={closeMobileMenu}
+              className="flex items-center gap-2 font-sans text-lg font-bold text-[#13294B]"
+            >
+              <svg
+                className="h-5 w-5 text-[#1558D6]"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                aria-hidden="true"
               >
-                <svg
-                  className="w-5 h-5 text-white"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                >
-                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-                </svg>
-                <span>Ryer Loans</span>
-              </Link>
-            </div>
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+              </svg>
 
-            {/* Mobile Nav Links */}
-            <ul className="flex flex-col gap-4 mt-6">
+              <span>Ryer Loans</span>
+            </Link>
+
+            <button
+              type="button"
+              onClick={closeMobileMenu}
+              className="rounded-lg p-2 text-slate-500 hover:bg-slate-100 hover:text-[#13294B]"
+              aria-label="Close menu"
+            >
+              <svg
+                className="h-5 w-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M6 18 18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+          </div>
+
+          {/* =====================================================
+              SCROLLABLE MOBILE NAVIGATION
+
+              ONLY THIS AREA SCROLLS
+          ===================================================== */}
+          <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-6 py-6">
+            <ul className="flex flex-col gap-1">
               {navLinks.map((link) => (
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    onClick={() => setIsOpen(false)}
-                    className="block text-gray-300 hover:text-white text-base py-1 transition-colors"
+                    onClick={closeMobileMenu}
+                    className="block rounded-lg px-3 py-3 text-base font-medium text-slate-700 transition-colors hover:bg-blue-50 hover:text-[#1558D6]"
                   >
                     {link.name}
                   </Link>
                 </li>
               ))}
 
-              <li>
-                <div className="text-sm font-semibold uppercase tracking-wide text-slate-400">
+              {/* Resources */}
+              <li className="mt-5">
+                <div className="px-3 text-xs font-bold uppercase tracking-[0.16em] text-slate-400">
                   Resources
                 </div>
-                <ul className="mt-2 space-y-2">
+
+                <ul className="mt-2 space-y-1">
                   {resourceLinks.map((link) => (
                     <li key={link.name}>
                       <Link
                         href={link.href}
-                        onClick={() => setIsOpen(false)}
-                        className="block text-gray-300 hover:text-white text-base py-1 transition-colors"
+                        onClick={closeMobileMenu}
+                        className="block rounded-lg px-3 py-3 text-sm font-medium text-slate-600 transition-colors hover:bg-blue-50 hover:text-[#1558D6]"
                       >
                         {link.name}
                       </Link>
@@ -248,20 +387,24 @@ export default function Navbar() {
             </ul>
           </div>
 
-          {/* Mobile Actions at Bottom */}
-          <div className="flex flex-col gap-3 pt-6 border-t border-[#1f293d]">
+          {/* =====================================================
+              MOBILE ACTIONS
+
+              THESE STAY AT THE BOTTOM
+          ===================================================== */}
+          <div className="shrink-0 space-y-3 border-t border-slate-200 bg-white px-6 py-5">
             <Link
               href="/loan-status"
-              onClick={() => setIsOpen(false)}
-              className="w-full text-center px-4 py-2.5 text-sm bg-transparent border border-[#1f293d] text-gray-200 rounded-md hover:bg-slate-900 transition-all"
+              onClick={closeMobileMenu}
+              className="block w-full rounded-lg border border-slate-200 bg-white px-4 py-3 text-center text-sm font-semibold text-[#13294B] transition-colors hover:border-blue-200 hover:bg-blue-50"
             >
               Loan Status
             </Link>
 
             <Link
               href="/apply"
-              onClick={() => setIsOpen(false)}
-              className="w-full text-center px-4 py-2.5 text-sm bg-sky-100 border border-sky-100 text-slate-900 font-medium rounded-md hover:bg-sky-200 transition-all"
+              onClick={closeMobileMenu}
+              className="block w-full rounded-lg bg-[#1558D6] px-4 py-3 text-center text-sm font-semibold text-white transition-colors hover:bg-[#0F47B0]"
             >
               Apply Now
             </Link>

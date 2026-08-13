@@ -21,7 +21,7 @@ export default function PersonalLoansHero() {
         </div>
 
         {/* Page Heading */}
-        <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight max-w-4xl">
+        <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight max-w-7xl">
           Online Personal Loans: How They Work and What They Cost
         </h1>
 
@@ -32,7 +32,7 @@ export default function PersonalLoansHero() {
         </p>
 
         {/* E-E-A-T Author & Reviewer Metadata Box */}
-        {/* <div className="mt-8 pt-6 border-t border-slate-800/80 grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl text-xs text-slate-300">
+        {/* <div className="mt-8 pt-6 border-t border-slate-800/80 grid grid-cols-1 md:grid-cols-2 gap-4 max-w-7xl text-xs text-slate-300">
           <div className="bg-slate-900/80 p-3.5 rounded-xl border border-slate-800 flex items-start gap-3">
             <User className="w-5 h-5 text-sky-400 flex-shrink-0 mt-0.5" />
             <div>

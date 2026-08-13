@@ -22,7 +22,7 @@ export default function InstallmentLoansHero() {
         </div>
 
         {/* Page Heading */}
-        <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight max-w-4xl">
+        <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight max-w-7xl">
           Online Installment Loans With Fixed Monthly Payments
         </h1>
 

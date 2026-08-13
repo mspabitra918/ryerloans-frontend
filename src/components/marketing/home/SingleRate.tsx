@@ -4,13 +4,13 @@ export default function SingleRate() {
   const formattedApr = `${RATE_CONFIG.apr.toFixed(2)}%`;
 
   return (
-    <section className="py-16 px-4 bg-[#030712] border-t border-[#1f293d]/50 text-gray-300">
-      <div className="max-w-6xl mx-auto space-y-6">
-        <h2 className="text-2xl sm:text-3xl font-sans font-semibold text-white tracking-tight">
+    <section className="border-t border-slate-200 bg-[#F8F6F0] px-4 py-16 text-[#13294B]">
+      <div className="mx-auto max-w-6xl space-y-6">
+        <h2 className="text-2xl font-sans font-semibold tracking-tight text-[#13294B] sm:text-3xl">
           A Single Rate, Published Openly
         </h2>
 
-        <div className="font-mono text-sm sm:text-base leading-relaxed space-y-4 text-gray-400">
+        <div className="space-y-4 text-sm font-mono leading-relaxed text-slate-600 sm:text-base">
           <p>
             Most online lenders show you a rate range — something like “6.99% to
             35.99% APR” — and you find out where you actually land only after
@@ -21,7 +21,7 @@ export default function SingleRate() {
 
           <p>
             Ryer Loans does it differently. Our personal loans carry a fixed{" "}
-            <span className="text-sky-300 font-semibold">{formattedApr}</span>{" "}
+            <span className="font-semibold text-[#1558D6]">{formattedApr}</span>{" "}
             Annual Percentage Rate. That figure does not move based on your
             credit score, your ZIP code, how much you borrow, or how long the
             term runs. The rate you read on this page is the rate written into

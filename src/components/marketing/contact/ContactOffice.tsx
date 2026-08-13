@@ -4,7 +4,7 @@ export default function ContactOffice() {
 
   return (
     <section className="py-12 px-4 bg-white border-b border-slate-200">
-      <div className="max-w-4xl mx-auto space-y-8">
+      <div className="max-w-7xl mx-auto space-y-8">
         {/* By Mail */}
         <div className="space-y-3">
           <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
@@ -29,7 +29,7 @@ export default function ContactOffice() {
           </p>
 
           {/* Map Frame */}
-          <div className="w-full h-80 rounded-2xl overflow-hidden border border-slate-200 bg-slate-100 shadow-sm">
+          <div className="w-full h-96 rounded-2xl overflow-hidden border border-slate-200 bg-slate-100 shadow-sm">
             <iframe
               title="Ryer Loans Long Beach Office Location"
               width="100%"

@@ -13,9 +13,15 @@ import {
 } from "@/src/lib/utils/validators";
 import {
   housingOptions,
-  US_STATES,
+  US_STATES_LIST,
   yearsAtAddressOptions,
 } from "@/src/lib/constants/applicationOptions";
+import { Check, Sparkles } from "lucide-react";
+import { useState } from "react";
+import {
+  checkDomainMXFrontend,
+  validateEmailClient,
+} from "@/src/lib/utils/emailClient";
 
 type PersonalData = ApplicationFormData["personal"];
 
@@ -26,9 +32,9 @@ interface Props {
   onNext: () => void;
 }
 
-const stateOptions = US_STATES.map((state) => ({
-  label: state,
-  value: state,
+const stateOptions = US_STATES_LIST.map((state) => ({
+  label: state.name,
+  value: state.abbr,
 }));
 
 export default function Step2PersonalDetails({
@@ -65,6 +71,36 @@ export default function Step2PersonalDetails({
     !!data.state &&
     zipValid &&
     !!data.housingStatus;
+
+  const [mxError, setMxError] = useState<string | undefined>(undefined);
+  const [isVerifyingMX, setIsVerifyingMX] = useState(false);
+
+  // Instant client-side validation (Layers 1, 2, 3, 5)
+  const clientResult = validateEmailClient(data.email);
+
+  // Frontend MX Record check on blur (Layer 4)
+  const handleBlur = async () => {
+    if (!clientResult.isValid || !data.email) return;
+
+    setIsVerifyingMX(true);
+    const hasMx = await checkDomainMXFrontend(data.email);
+    setIsVerifyingMX(false);
+
+    if (!hasMx) {
+      setMxError("Email domain does not appear to accept mail.");
+    } else {
+      setMxError(undefined);
+    }
+  };
+
+  const handleApplySuggestion = () => {
+    if (clientResult.suggestion) {
+      update({ email: clientResult.suggestion });
+      setMxError(undefined);
+    }
+  };
+  // Error priority: Client structural/typo error > Server MX error
+  const errorMessage = (data.email.length > 0 && clientResult.error) || mxError;
 
   return (
     <section>
@@ -110,27 +146,54 @@ export default function Step2PersonalDetails({
           label="Email Address"
           htmlFor="email"
           required
-          error={
-            data.email.length > 0 && !emailValid
-              ? "Please enter a valid email address."
-              : undefined
-          }
+          error={errorMessage}
         >
-          <FormInput
-            id="email"
-            type="email"
-            value={data.email}
-            onChange={(event) =>
-              update({
-                email: event.target.value,
-              })
-            }
-            placeholder="you@example.com"
-            autoComplete="email"
-            error={data.email.length > 0 && !emailValid}
-          />
+          <div className="relative">
+            <FormInput
+              id="email"
+              type="email"
+              value={data.email}
+              onChange={(event) => {
+                setMxError(undefined);
+                update({
+                  email: event.target.value,
+                });
+              }}
+              onBlur={handleBlur}
+              placeholder="you@example.com"
+              autoComplete="email"
+              error={Boolean(errorMessage)}
+            />
+            {isVerifyingMX && (
+              <span className="absolute right-3 top-3 text-xs text-slate-400 animate-pulse font-medium">
+                Checking domain...
+              </span>
+            )}
+          </div>
         </FormField>
-
+        {/* One-Tap Typo Correction Suggestion Banner */}
+        {clientResult.suggestion && (
+          <div className="flex items-center justify-between gap-3 rounded-xl border border-sky-200 bg-sky-50 p-3 text-xs text-sky-950 shadow-sm animate-in fade-in duration-150">
+            <div className="flex items-center gap-2">
+              <Sparkles className="h-4 w-4 text-sky-600 shrink-0" />
+              <span>
+                Did you mean{" "}
+                <strong className="font-semibold">
+                  {clientResult.suggestion}
+                </strong>
+                ?
+              </span>
+            </div>
+            <button
+              type="button"
+              onClick={handleApplySuggestion}
+              className="inline-flex shrink-0 items-center gap-1 rounded-lg bg-sky-600 px-2.5 py-1 text-xs font-bold text-white shadow hover:bg-sky-700 transition"
+            >
+              <Check className="h-3.5 w-3.5" />
+              Fix
+            </button>
+          </div>
+        )}
         {/* Phone */}
         <FormField
           label="Mobile Phone"

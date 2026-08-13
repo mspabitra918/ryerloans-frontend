@@ -56,7 +56,7 @@ export default function FaqContent({ categories }: FaqContentProps) {
   };
 
   return (
-    <div className="py-16 px-4 max-w-4xl mx-auto space-y-12">
+    <div className="py-16 px-4 max-w-7xl mx-auto space-y-12">
       {categories.map((category, catIdx) => (
         <section key={catIdx} className="space-y-4">
           <h2 className="text-2xl font-bold text-slate-900 tracking-tight border-b border-slate-200 pb-2">

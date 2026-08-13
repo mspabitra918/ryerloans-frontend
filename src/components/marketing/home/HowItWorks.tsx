@@ -1,4 +1,6 @@
 import { RATE_CONFIG } from "@/src/lib/config";
+import { PhoneCall } from "lucide-react";
+
 export default function HowItWorks() {
   const steps = [
     {
@@ -41,31 +43,62 @@ export default function HowItWorks() {
   ];
 
   return (
-    <section className="py-16 px-4 bg-[#030712] border-t border-[#1f293d]/50">
-      <div className="max-w-6xl mx-auto space-y-10">
-        <h2 className="text-2xl sm:text-3xl font-sans font-semibold text-white tracking-tight">
-          How It Works
-        </h2>
+    <section className="py-16 sm:py-24 px-4 bg-[#F8F6F0] border-t border-stone-200/80">
+      <div className="max-w-5xl mx-auto space-y-12">
+        {/* Header */}
+        <div className="space-y-3 text-center sm:text-left">
+          <span className="text-xs font-bold uppercase tracking-wider text-sky-700 bg-sky-100/80 px-3 py-1 rounded-full inline-block">
+            Simple 6-Step Process
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-sans font-extrabold text-slate-900 tracking-tight">
+            How It Works
+          </h2>
+          <p className="text-slate-600 text-base max-w-2xl leading-relaxed">
+            Clear, transparent funding with personal human support at every
+            stage.
+          </p>
+        </div>
 
-        <div className="space-y-6">
+        {/* Steps List */}
+        <div className="space-y-4">
           {steps.map((step) => (
             <div
               key={step.number}
-              className={`p-6 rounded-xl border font-mono transition-all ${
+              className={`p-6 sm:p-7 rounded-2xl border transition-all duration-200 ${
                 step.highlight
-                  ? "bg-[#050b14] border-sky-500/40 shadow-[0_0_20px_rgba(56,189,248,0.1)]"
-                  : "bg-[#050b14] border-[#1f293d]"
+                  ? "bg-white border-sky-500 shadow-lg shadow-sky-950/5 ring-1 ring-sky-500/20"
+                  : "bg-white border-stone-200/90 shadow-sm hover:shadow-md hover:border-stone-300"
               }`}
             >
-              <div className="flex items-start gap-4">
-                <span className="text-sky-400 font-bold text-lg">
-                  {step.number}.
-                </span>
-                <div className="space-y-2">
-                  <h3 className="text-white font-semibold text-base sm:text-lg">
-                    {step.title}
-                  </h3>
-                  <p className="text-gray-400 text-xs sm:text-sm leading-relaxed">
+              <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
+                {/* Step Number Badge */}
+                <div
+                  className={`flex shrink-0 items-center justify-center w-12 h-12 rounded-xl font-bold text-base transition-colors ${
+                    step.highlight
+                      ? "bg-sky-600 text-white shadow-sm"
+                      : "bg-stone-100 text-stone-700 border border-stone-200"
+                  }`}
+                >
+                  {step.highlight ? (
+                    <PhoneCall className="w-5 h-5 animate-pulse" />
+                  ) : (
+                    step.number
+                  )}
+                </div>
+
+                {/* Content */}
+                <div className="space-y-2 flex-1">
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <h3 className="text-slate-900 font-bold text-lg sm:text-xl tracking-tight">
+                      {step.title}
+                    </h3>
+                    {step.highlight && (
+                      <span className="text-[11px] font-extrabold uppercase tracking-wider text-sky-700 bg-sky-50 border border-sky-200 px-2.5 py-0.5 rounded-md">
+                        Required Action
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
                     {step.description}
                   </p>
                 </div>

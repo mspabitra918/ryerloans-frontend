@@ -1,9 +1,4 @@
-import {
-  Building2,
-  ArrowUpRight,
-  ShieldCheck,
-  HeartHandshake,
-} from "lucide-react";
+import { ArrowUpRight, CheckCircle2, HeartHandshake } from "lucide-react";
 
 interface Resource {
   name: string;
@@ -19,80 +14,105 @@ interface Props {
 
 export default function FinancialResources({ city, resources }: Props) {
   return (
-    <section className="py-20 bg-slate-950 text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative overflow-hidden rounded-3xl border border-slate-800 bg-gradient-to-b from-slate-900/90 to-slate-900/40 p-8 sm:p-12 shadow-2xl backdrop-blur-sm">
-          {/* Subtle Glow Accent */}
-          <div className="absolute top-0 right-0 -mt-16 -mr-16 w-96 h-96 bg-sky-500/10 blur-3xl pointer-events-none rounded-full" />
-
-          {/* Section Header */}
-          <div className="relative z-10 max-w-3xl pb-8 border-b border-slate-800/80">
-            <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-sky-400 font-semibold mb-3">
-              <HeartHandshake className="w-4 h-4" />
-              <span>Community Support & Guidance</span>
-            </div>
-            <h2 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
-              Local Financial Assistance & Resources in {city}
-            </h2>
-            <p className="mt-3 text-slate-400 text-sm sm:text-base leading-relaxed">
-              Before taking out a loan, explore these local community programs
-              for utility assistance, budget counseling, emergency grants, and
-              low-cost credit guidance.
-            </p>
+    <section className="border-b border-slate-200 bg-slate-50 py-20">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <div className="max-w-3xl">
+          <div className="mb-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-sky-600">
+            <HeartHandshake className="h-4 w-4" />
+            <span>Community Support</span>
           </div>
 
-          {/* Resources Grid */}
-          <div className="relative z-10 mt-8 grid gap-6 md:grid-cols-2">
-            {resources.map((resource) => {
-              const CardContent = (
-                <article className="group relative flex flex-col justify-between h-full rounded-2xl border border-slate-800/80 bg-slate-900/60 p-6 transition-all duration-200 hover:-translate-y-1 hover:border-sky-500/40 hover:bg-slate-800/80 hover:shadow-xl hover:shadow-sky-500/5">
-                  <div className="space-y-4">
-                    <div className="flex items-start justify-between gap-4">
-                      <div className="w-10 h-10 rounded-xl bg-sky-500/10 text-sky-400 flex items-center justify-center font-bold shrink-0">
-                        <Building2 className="w-5 h-5" />
-                      </div>
+          <h2 className="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
+            Financial Resources in {city}
+          </h2>
+
+          <p className="mt-4 text-base leading-7 text-slate-600 sm:text-lg">
+            Check these resources before borrowing. You may find utility
+            assistance, housing support, financial counselling, emergency
+            assistance, or lower-cost credit options that solve the problem
+            without taking on a new loan.
+          </p>
+        </div>
+
+        {/* Resources */}
+        <div className="mt-10 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+          {resources.map((resource, index) => {
+            const content = (
+              <div className="group flex gap-5 p-5 transition hover:bg-slate-50 sm:p-6">
+                {/* Number */}
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-sky-50 text-sm font-bold text-sky-700">
+                  {String(index + 1).padStart(2, "0")}
+                </div>
+
+                {/* Content */}
+                <div className="min-w-0 flex-1">
+                  <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+                    <div>
+                      <h3 className="text-base font-bold text-slate-900 transition-colors group-hover:text-sky-700 sm:text-lg">
+                        {resource.name}
+                      </h3>
+
                       {resource.category && (
-                        <span className="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 text-xs font-mono border border-slate-700/60">
+                        <span className="mt-1 inline-block text-xs font-medium uppercase tracking-wide text-slate-400">
                           {resource.category}
                         </span>
                       )}
                     </div>
 
-                    <div className="space-y-2">
-                      <h3 className="text-xl font-bold text-white group-hover:text-sky-400 transition-colors flex items-center justify-between">
-                        <span>{resource.name}</span>
-                        {resource.url && (
-                          <ArrowUpRight className="w-4 h-4 text-slate-500 group-hover:text-sky-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                        )}
-                      </h3>
-                      <p className="text-sm text-slate-400 leading-relaxed">
-                        {resource.description}
-                      </p>
+                    {resource.url && (
+                      <ArrowUpRight className="mt-1 h-5 w-5 shrink-0 text-slate-400 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-sky-600" />
+                    )}
+                  </div>
+
+                  <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-600">
+                    {resource.description}
+                  </p>
+
+                  {resource.url && (
+                    <div className="mt-3 text-xs font-semibold text-sky-600">
+                      Visit resource
                     </div>
-                  </div>
+                  )}
+                </div>
+              </div>
+            );
 
-                  <div className="mt-6 pt-4 border-t border-slate-800/60 flex items-center gap-1.5 text-xs font-medium text-slate-500 group-hover:text-sky-400 transition-colors">
-                    <ShieldCheck className="w-3.5 h-3.5 text-sky-400" />
-                    <span>Verified Community Program</span>
-                  </div>
-                </article>
-              );
+            return (
+              <div key={resource.name}>
+                {resource.url ? (
+                  <a
+                    href={resource.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block focus:outline-none focus:ring-2 focus:ring-inset focus:ring-sky-500"
+                  >
+                    {content}
+                  </a>
+                ) : (
+                  content
+                )}
 
-              return resource.url ? (
-                <a
-                  key={resource.name}
-                  href={resource.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block focus:outline-none focus:ring-2 focus:ring-sky-500/50 rounded-2xl"
-                >
-                  {CardContent}
-                </a>
-              ) : (
-                <div key={resource.name}>{CardContent}</div>
-              );
-            })}
-          </div>
+                {index < resources.length - 1 && (
+                  <div className="ml-[60px] border-b border-slate-100" />
+                )}
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Bottom note */}
+        <div className="mt-6 flex max-w-7xl items-start gap-3 rounded-xl border border-sky-100 bg-sky-50/70 p-4">
+          <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-sky-600" />
+
+          <p className="text-sm leading-6 text-slate-600">
+            <span className="font-semibold text-slate-900">
+              Check these options first.
+            </span>{" "}
+            If a utility discount, assistance program, credit union, or
+            counselling service can solve your problem, that may be a better
+            option than taking on new debt.
+          </p>
         </div>
       </div>
     </section>

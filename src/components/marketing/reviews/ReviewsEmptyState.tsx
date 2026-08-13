@@ -6,7 +6,7 @@ export default function ReviewsEmptyState() {
   const formattedApr = `${RATE_CONFIG.apr.toFixed(2)}%`;
 
   return (
-    <div className="py-16 px-4 max-w-4xl mx-auto space-y-12">
+    <div className="py-16 px-4 max-w-7xl mx-auto space-y-12">
       {/* Developer / Attorney Warning Notice Callout */}
       <div className="bg-amber-50 border border-amber-200 rounded-2xl p-5 sm:p-6 flex items-start gap-4">
         <AlertTriangle className="w-6 h-6 text-amber-600 flex-shrink-0 mt-0.5" />

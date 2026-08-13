@@ -22,23 +22,26 @@ export default function LoanUses() {
   ];
 
   return (
-    <section className="py-16 px-4 bg-[#030712] border-t border-[#1f293d]/50 text-gray-300">
-      <div className="max-w-6xl mx-auto space-y-8">
-        <h2 className="text-2xl sm:text-3xl font-sans font-semibold text-white tracking-tight">
-          What Your Loan Can Pay For
-        </h2>
+    <section className="border-t border-slate-200 bg-[#F8F6F0] px-4 py-16 text-[#13294B] sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-6xl space-y-8">
+        {/* Heading */}
+        <div>
+          <h2 className="text-2xl font-semibold tracking-tight text-[#13294B] sm:text-3xl">
+            What Your Loan Can Pay For
+          </h2>
 
-        <p className="font-mono text-sm sm:text-base text-gray-400 leading-relaxed">
-          Personal loans from Ryer are unsecured and flexible. Borrowers use
-          them for:
-        </p>
+          <p className="mt-4 text-sm leading-relaxed text-slate-600 sm:text-base">
+            Personal loans from Ryer are unsecured and flexible. Borrowers use
+            them for:
+          </p>
+        </div>
 
         {/* Use Case Tags */}
-        <div className="flex flex-wrap gap-2.5 font-mono text-xs sm:text-sm">
-          {uses.map((item, index) => (
+        <div className="flex flex-wrap gap-2.5">
+          {uses.map((item) => (
             <span
-              key={index}
-              className="bg-[#050b14] text-gray-300 px-3.5 py-1.5 rounded-lg border border-[#1f293d]"
+              key={item}
+              className="rounded-lg border border-slate-200 bg-white px-3.5 py-2 text-xs font-medium text-slate-600 shadow-sm transition-colors hover:border-blue-200 hover:bg-blue-50 hover:text-[#1558D6] sm:text-sm"
             >
               {item}
             </span>
@@ -46,20 +49,41 @@ export default function LoanUses() {
         </div>
 
         {/* Debt Consolidation Note */}
-        <div className="bg-[#050b14] border border-[#1f293d] p-6 rounded-xl space-y-3 font-mono text-sm text-gray-400">
-          <h3 className="text-white font-semibold">
-            Debt Consolidation Highlight
-          </h3>
-          <p className="leading-relaxed">
-            Debt consolidation is the single most common use, and the arithmetic
-            is easy to see. The average credit card in the United States charges
-            well over 20% APR on revolving balances. Rolling $12,000 of card
-            debt into a fixed{" "}
-            <span className="text-sky-300">{formattedApr}</span> installment
-            loan replaces several minimum payments — which are structured so the
-            balance barely moves — with one fixed payment and a definite payoff
-            date on the calendar.
-          </p>
+        <div className="rounded-2xl border border-blue-100 bg-white p-6 shadow-sm sm:p-7">
+          <div className="flex items-start gap-4">
+            {/* Icon */}
+            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-blue-50 text-[#1558D6]">
+              <svg
+                className="h-5 w-5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.8"
+              >
+                <path d="M7 7h10M7 12h10M7 17h6" />
+                <path d="M4 4h16v16H4z" />
+              </svg>
+            </div>
+
+            <div>
+              <h3 className="font-semibold text-[#13294B]">
+                Debt Consolidation Highlight
+              </h3>
+
+              <p className="mt-3 text-sm leading-relaxed text-slate-600 sm:text-base">
+                Debt consolidation is the single most common use, and the
+                arithmetic is easy to see. The average credit card in the United
+                States charges well over 20% APR on revolving balances. Rolling
+                $12,000 of card debt into a fixed{" "}
+                <span className="font-semibold text-[#1558D6]">
+                  {formattedApr}
+                </span>{" "}
+                installment loan replaces several minimum payments — which are
+                structured so the balance barely moves — with one fixed payment
+                and a definite payoff date on the calendar.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </section>

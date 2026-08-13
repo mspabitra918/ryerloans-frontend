@@ -5,9 +5,9 @@ const ADMIN_AUTH_COOKIE = "river_cash_admin_auth";
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const redirectPaths = [
-    "/thank-you",
+    // "/thank-you",
     "/admin",
-    "/personal-loans/california",
+    // "/personal-loans/california",
     "/loan-status",
     "/apply",
     "/reviews",

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import ProgressBar from "./ProgressBar";
 import Step1LoanRequest from "./Step1LoanRequest";
 import Step2PersonalDetails from "./Step2PersonalDetails";
@@ -11,7 +12,6 @@ import { ApplicationFormData, initialData } from "@/src/lib/types/application";
 
 export default function ApplyForm() {
   const [step, setStep] = useState(1);
-
   const [formData, setFormData] = useState<ApplicationFormData>(initialData);
 
   const updateFormData = (section: keyof ApplicationFormData, data: any) => {
@@ -26,108 +26,182 @@ export default function ApplyForm() {
 
   const nextStep = () => {
     setStep((current) => Math.min(current + 1, 5));
-
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const previousStep = () => {
     setStep((current) => Math.max(current - 1, 1));
-
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const goToStep = (targetStep: number) => {
     setStep(targetStep);
-
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  // Format currency display safely
+  const formattedAmount = formData.loan?.amount
+    ? Number(formData.loan.amount).toLocaleString("en-US")
+    : "0";
+
+  const apr = formData.loan?.apr || 10;
+
   return (
-    <div className="mx-auto w-full max-w-4xl px-4 py-6 sm:px-6 sm:py-10">
-      {/* Header */}
-      <div className="mb-6 text-center">
-        <h1 className="text-2xl font-bold text-slate-950 sm:text-3xl">
-          Apply for a Personal Loan
-        </h1>
+    <div className="relative z-10 mx-auto w-full max-w-7xl px-4 -mt-10 sm:-mt-12 sm:px-6 pb-16">
+      {/* Main Grid Layout */}
+      <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-start">
+        {/* Left Column: Form Card */}
+        <div className="rounded-3xl border border-slate-200/80 bg-white p-6 shadow-xl shadow-slate-900/5 sm:p-8 lg:col-span-7 xl:col-span-8">
+          <ProgressBar step={step} />
 
-        <p className="mt-2 text-sm text-slate-500">
-          Complete your application in a few simple steps.
-        </p>
-      </div>
+          {/* Steps */}
+          {step === 1 && (
+            <Step1LoanRequest
+              data={formData.loan}
+              update={(data) => updateFormData("loan", data)}
+              onNext={nextStep}
+            />
+          )}
 
-      {/* Form Card */}
-      <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-8">
-        <ProgressBar step={step} />
+          {step === 2 && (
+            <Step2PersonalDetails
+              data={formData.personal}
+              update={(data) => updateFormData("personal", data)}
+              onBack={previousStep}
+              onNext={nextStep}
+            />
+          )}
 
-        {/* Autosave */}
-        <div className="mb-6 flex items-center justify-between rounded-lg bg-slate-50 px-4 py-3">
-          <span className="text-xs text-slate-500">
-            Your progress is saved automatically.
-          </span>
+          {step === 3 && (
+            <Step3EmploymentIncome
+              data={formData.employment}
+              update={(data) => updateFormData("employment", data)}
+              onBack={previousStep}
+              onNext={nextStep}
+            />
+          )}
 
-          <span className="text-xs font-medium text-green-600">Saved</span>
+          {step === 4 && (
+            <Step4Banking
+              data={formData.banking}
+              update={(data) => updateFormData("banking", data)}
+              onBack={previousStep}
+              onNext={nextStep}
+            />
+          )}
+
+          {step === 5 && (
+            <Step5ReviewConsent
+              data={formData}
+              updateConsent={(data) => updateFormData("consent", data)}
+              onBack={previousStep}
+              onEdit={goToStep}
+            />
+          )}
         </div>
 
-        {/* STEP 1 */}
-        {step === 1 && (
-          <Step1LoanRequest
-            data={formData.loan}
-            update={(data) => updateFormData("loan", data)}
-            onNext={nextStep}
-          />
-        )}
+        {/* Right Column: Information Cards */}
+        <div className="space-y-6 lg:sticky lg:top-8 lg:col-span-5 xl:col-span-4">
+          {/* Summary Card */}
+          <div className="rounded-3xl border border-slate-200/80 bg-white p-6 shadow-lg shadow-slate-900/5">
+            <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">
+              Loan Overview
+            </p>
+            <div className="mt-2 flex items-baseline gap-2">
+              <span className="text-4xl font-extrabold text-slate-900">
+                ${formattedAmount}
+              </span>
+              <span className="text-sm font-medium text-slate-500">
+                · {apr}% fixed APR
+              </span>
+            </div>
 
-        {/* STEP 2 */}
-        {step === 2 && (
-          <Step2PersonalDetails
-            data={formData.personal}
-            update={(data) => updateFormData("personal", data)}
-            onBack={previousStep}
-            onNext={nextStep}
-          />
-        )}
+            <hr className="my-5 border-slate-100" />
 
-        {/* STEP 3 */}
-        {step === 3 && (
-          <Step3EmploymentIncome
-            data={formData.employment}
-            update={(data) => updateFormData("employment", data)}
-            onBack={previousStep}
-            onNext={nextStep}
-          />
-        )}
+            <ul className="space-y-3.5">
+              <li className="flex items-center text-sm font-medium text-slate-700">
+                <div className="mr-3 flex h-6 w-6 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
+                  <svg
+                    className="h-4 w-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2.5"
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                </div>
+                No collateral required
+              </li>
+              <li className="flex items-center text-sm font-medium text-slate-700">
+                <div className="mr-3 flex h-6 w-6 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
+                  <svg
+                    className="h-4 w-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2.5"
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                </div>
+                $0 upfront fees
+              </li>
+              <li className="flex items-center text-sm font-medium text-slate-700">
+                <div className="mr-3 flex h-6 w-6 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
+                  <svg
+                    className="h-4 w-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2.5"
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                </div>
+                Funded within 24 hours
+              </li>
+            </ul>
+          </div>
 
-        {/* STEP 4 */}
-        {step === 4 && (
-          <Step4Banking
-            data={formData.banking}
-            update={(data) => updateFormData("banking", data)}
-            onBack={previousStep}
-            onNext={nextStep}
-          />
-        )}
+          {/* Security & Data Protection Card */}
+          <div className="rounded-3xl border border-slate-200/80 bg-slate-200/70 p-6 backdrop-blur-sm">
+            <div className="flex items-center gap-2 font-semibold text-slate-900">
+              <span className="text-base">🔒</span>
+              <h3 className="text-sm font-semibold">Your data is protected</h3>
+            </div>
+            <p className="mt-2 text-xs sm:text-sm leading-relaxed text-slate-600">
+              Submitted over TLS 1.3 and encrypted at rest with AES-256. We
+              never store your online-banking password.
+            </p>
+          </div>
 
-        {/* STEP 5 */}
-        {step === 5 && (
-          <Step5ReviewConsent
-            data={formData}
-            updateConsent={(data) => updateFormData("consent", data)}
-            onBack={previousStep}
-            onEdit={goToStep}
-          />
-        )}
+          {/* Already applied link */}
+          <p className="text-center text-sm text-slate-600">
+            Already applied?{" "}
+            <Link
+              href="/loan-status"
+              className="font-semibold text-blue-600 hover:text-blue-700 hover:underline"
+            >
+              Check your status
+            </Link>
+          </p>
+        </div>
       </div>
 
-      <p className="mt-5 text-center text-xs text-slate-500">
+      <p className="mt-8 text-center text-xs text-slate-400">
         Your information is protected and handled securely.
       </p>
     </div>

@@ -7,41 +7,62 @@ export default function RepresentativeExample() {
   const formattedApr = `${RATE_CONFIG.apr.toFixed(2)}%`;
 
   return (
-    <section className="bg-[#030712] px-4 py-20 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-6xl rounded-4xl border border-slate-800 bg-linear-to-br from-slate-900 to-slate-950 p-8 shadow-2xl shadow-slate-950/50 sm:p-10">
-        <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
+    <section className="bg-[#F8F6F0] px-4 py-20 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-6xl rounded-[28px] border border-slate-200 bg-white p-8 shadow-xl shadow-slate-200/50 sm:p-10">
+        <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+          {/* Content */}
           <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.24em] text-sky-400">
-              Example payment
+            <p className="text-sm font-semibold uppercase tracking-[0.24em] text-[#1558D6]">
+              Example Payment
             </p>
-            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-[#13294B] sm:text-4xl">
               See how a $10,000 loan could look at a fixed rate.
             </h2>
-            <p className="mt-5 text-lg leading-8 text-slate-400">
-              A {sampleAmount.toLocaleString()} personal loan at {formattedApr}{" "}
+
+            <p className="mt-5 text-lg leading-8 text-slate-600">
+              A {sampleAmount.toLocaleString()} personal loan at{" "}
+              <span className="font-semibold text-[#1558D6]">
+                {formattedApr}
+              </span>{" "}
               fixed APR repaid over {sampleTerm} months would carry a
               predictable monthly payment with a known total repayment before
               you sign anything.
             </p>
           </div>
 
-          <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-6">
+          {/* Calculation Card */}
+          <div className="rounded-2xl border border-slate-200 bg-[#F8FAFC] p-6">
             <div className="grid gap-4 sm:grid-cols-2">
-              <div className="rounded-xl border border-slate-800 bg-slate-950/80 p-4">
-                <div className="text-sm text-slate-400">Monthly payment</div>
-                <div className="mt-2 text-2xl font-semibold text-sky-400">
+              {/* Monthly Payment */}
+              <div className="rounded-xl border border-blue-100 bg-white p-5 shadow-sm">
+                <div className="text-sm font-medium text-slate-500">
+                  Monthly payment
+                </div>
+
+                <div className="mt-2 text-2xl font-bold text-[#1558D6]">
                   ${calculation.monthlyPayment}
                 </div>
               </div>
-              <div className="rounded-xl border border-slate-800 bg-slate-950/80 p-4">
-                <div className="text-sm text-slate-400">Total interest</div>
-                <div className="mt-2 text-2xl font-semibold text-white">
+
+              {/* Total Interest */}
+              <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+                <div className="text-sm font-medium text-slate-500">
+                  Total interest
+                </div>
+
+                <div className="mt-2 text-2xl font-bold text-[#13294B]">
                   ${calculation.totalInterest}
                 </div>
               </div>
-              <div className="rounded-xl border border-slate-800 bg-slate-950/80 p-4 sm:col-span-2">
-                <div className="text-sm text-slate-400">Total repayment</div>
-                <div className="mt-2 text-2xl font-semibold text-white">
+
+              {/* Total Repayment */}
+              <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm sm:col-span-2">
+                <div className="text-sm font-medium text-slate-500">
+                  Total repayment
+                </div>
+
+                <div className="mt-2 text-2xl font-bold text-[#13294B]">
                   ${calculation.totalRepayment}
                 </div>
               </div>

@@ -4,6 +4,8 @@ import FormNavigation from "../../ui/FormNavigation";
 import FormReviewCard from "../../ui/FormReviewCard";
 import FormReviewRow from "../../ui/FormReviewRow";
 import FormSection from "../../ui/FormSection";
+import Link from "next/link";
+import { RATE_CONFIG } from "@/src/lib/config";
 
 interface Props {
   data: ApplicationFormData;
@@ -18,8 +20,11 @@ export default function Step5ReviewConsent({
   onBack,
   onEdit,
 }: Props) {
+  // Checkboxes 1, 2, and 3 are required. Checkbox 4 (TCPA) is strictly optional.
   const requiredConsents =
-    data.consent.esign && data.consent.privacy && data.consent.creditPull;
+    Boolean(data.consent.esign) &&
+    Boolean(data.consent.privacy) &&
+    Boolean(data.consent.creditPull);
 
   const submitApplication = async () => {
     if (!requiredConsents) {
@@ -57,9 +62,7 @@ export default function Step5ReviewConsent({
             label="Requested Amount"
             value={`$${data.loan.amount.toLocaleString()}`}
           />
-
           <FormReviewRow label="Purpose" value={data.loan.purpose} />
-
           {data.loan.otherPurpose && (
             <FormReviewRow
               label="Other Details"
@@ -74,16 +77,12 @@ export default function Step5ReviewConsent({
             label="Name"
             value={`${data.personal.firstName} ${data.personal.lastName}`}
           />
-
           <FormReviewRow label="Email" value={data.personal.email} />
-
           <FormReviewRow label="Phone" value={data.personal.phone} />
-
           <FormReviewRow
             label="Date of Birth"
             value={`${data.personal.dobMonth}/${data.personal.dobDay}/${data.personal.dobYear}`}
           />
-
           <FormReviewRow
             label="Address"
             value={[
@@ -96,9 +95,7 @@ export default function Step5ReviewConsent({
               .filter(Boolean)
               .join(", ")}
           />
-
           <FormReviewRow label="Social Security Number" sensitive />
-
           <FormReviewRow
             label="Driver's License"
             value={
@@ -115,23 +112,19 @@ export default function Step5ReviewConsent({
             label="Employment Status"
             value={data.employment.employmentStatus}
           />
-
           {data.employment.employerName && (
             <FormReviewRow
               label="Employer"
               value={data.employment.employerName}
             />
           )}
-
           {data.employment.jobTitle && (
             <FormReviewRow label="Job Title" value={data.employment.jobTitle} />
           )}
-
           <FormReviewRow
             label="Pay Frequency"
             value={data.employment.payFrequency}
           />
-
           <FormReviewRow
             label="Net Monthly Income"
             value={
@@ -142,12 +135,10 @@ export default function Step5ReviewConsent({
                 : undefined
             }
           />
-
           <FormReviewRow
             label="Income Source"
             value={data.employment.incomeSource}
           />
-
           <FormReviewRow
             label="Vehicle"
             value={
@@ -158,7 +149,6 @@ export default function Step5ReviewConsent({
                   : undefined
             }
           />
-
           {data.employment.ownsVehicle === true && (
             <FormReviewRow
               label="Vehicle"
@@ -176,12 +166,10 @@ export default function Step5ReviewConsent({
         {/* Step 4 */}
         <FormReviewCard title="Banking" step={4} onEdit={onEdit}>
           <FormReviewRow label="Bank" value={data.banking.bankName} />
-
           <FormReviewRow
             label="Account Type"
             value={data.banking.accountType}
           />
-
           <FormReviewRow
             label="Routing Number"
             value={
@@ -190,7 +178,6 @@ export default function Step5ReviewConsent({
                 : undefined
             }
           />
-
           <FormReviewRow
             label="Account Number"
             value={
@@ -199,14 +186,11 @@ export default function Step5ReviewConsent({
                 : undefined
             }
           />
-
           <FormReviewRow label="Account Age" value={data.banking.accountAge} />
-
           <FormReviewRow
             label="Current Balance"
             value={data.banking.currentBalanceBand}
           />
-
           <FormReviewRow
             label="Direct Deposit"
             value={
@@ -220,90 +204,150 @@ export default function Step5ReviewConsent({
         </FormReviewCard>
       </div>
 
-      {/* Consent */}
+      {/* Consents Section */}
       <div className="mt-8">
         <div className="mb-4">
           <h3 className="text-base font-bold text-slate-900">
-            Required Agreements
+            Agreements & Consents
           </h3>
-
           <p className="mt-1 text-sm text-slate-500">
-            Please review and accept the required agreements before submitting
-            your application.
+            Please review and accept the required disclosures prior to
+            submission.
           </p>
         </div>
 
-        <div className="space-y-3">
-          {/* E-Sign */}
+        <div className="space-y-4">
+          {/* Checkbox 1: Electronic Records Consent (Required) */}
           <FormConsent
             checked={data.consent.esign}
-            onChange={(checked) =>
-              updateConsent({
-                esign: checked,
-              })
-            }
+            onChange={(checked) => updateConsent({ esign: checked })}
             required
-            title="E-Sign Consent"
+            title="1. Electronic Records Consent"
           >
-            I consent to use electronic records and electronic signatures.
+            I consent to receive all disclosures, notices, agreements, and
+            communications from Ryer Loans electronically, including my loan
+            agreement and any required legal notices. I confirm I can access and
+            retain PDF documents and HTML web pages. I understand I may withdraw
+            this consent by contacting Ryer Loans, and that withdrawing it may
+            prevent me from completing an online application. Full terms:{" "}
+            <Link
+              target="_blank"
+              href="/e-sign-consent"
+              className="text-sky-600 font-semibold hover:underline"
+            >
+              [E-Sign Consent]
+            </Link>
+            .
           </FormConsent>
 
-          {/* Privacy */}
+          {/* Checkbox 2: Privacy Policy and Terms of Use (Required) */}
           <FormConsent
             checked={data.consent.privacy}
-            onChange={(checked) =>
-              updateConsent({
-                privacy: checked,
-              })
-            }
+            onChange={(checked) => updateConsent({ privacy: checked })}
             required
-            title="Privacy Policy + Terms of Use"
+            title="2. Privacy Policy and Terms of Use"
           >
-            I acknowledge and agree to the Privacy Policy and Terms of Use.
+            I have read and agree to the{" "}
+            <Link
+              target="_blank"
+              href="/privacy-policy"
+              className="text-sky-600 font-semibold hover:underline"
+            >
+              [Privacy Policy]
+            </Link>{" "}
+            and{" "}
+            <Link
+              target="_blank"
+              href="/terms-of-use"
+              className="text-sky-600 font-semibold hover:underline"
+            >
+              [Terms of Use]
+            </Link>
+            . I confirm that all information I have provided is true, complete,
+            and accurate to the best of my knowledge, and I understand that
+            providing false information in connection with a credit application
+            may be a violation of federal and state law.
           </FormConsent>
 
-          {/* Credit */}
+          {/* Checkbox 3: Credit and Verification Authorization (Required) */}
           <FormConsent
             checked={data.consent.creditPull}
-            onChange={(checked) =>
-              updateConsent({
-                creditPull: checked,
-              })
-            }
+            onChange={(checked) => updateConsent({ creditPull: checked })}
             required
-            title="Credit & Verification Authorization"
+            title="3. Credit and Verification Authorization"
           >
-            I authorize credit, identity, and other required verification
-            checks.
+            I authorize Ryer Loans and its service providers to verify the
+            information in this application and to obtain consumer reports,
+            credit reports, and other information about me from consumer
+            reporting agencies and other sources, including alternative credit
+            bureaus, for the purposes of evaluating this application, verifying
+            my identity, preventing fraud, and — if a loan is originated —
+            servicing and collecting that loan. I authorize Ryer Loans to verify
+            my employment and income, and to connect to my bank account on a
+            read-only basis to confirm ownership and account details.
           </FormConsent>
 
-          {/* TCPA - OPTIONAL */}
-          <FormConsent
-            checked={data.consent.tcpa}
-            onChange={(checked) =>
-              updateConsent({
-                tcpa: checked,
-              })
-            }
-            title="TCPA Communications Consent"
-          >
-            I agree to receive calls, prerecorded/artificial voice calls,
-            autodialed calls, and SMS messages.
-            <span className="mt-2 block text-xs leading-5 text-slate-500">
-              This consent is optional and is not a condition of obtaining a
-              loan.
-            </span>
-          </FormConsent>
+          {/* Checkbox 4: Consent to Contact (OPTIONAL) */}
+          <div className="space-y-2">
+            <FormConsent
+              checked={data.consent.tcpa}
+              onChange={(checked) => updateConsent({ tcpa: checked })}
+              title="4. Consent to Contact (Optional)"
+            >
+              I authorize Ryer Loans, its affiliates, and its service providers
+              to contact me at the telephone number(s) and email address I have
+              provided, including my wireless number, using automatic telephone
+              dialing systems, artificial or prerecorded voice messages,
+              ringless voicemail, text/SMS messages, and email — for purposes
+              including servicing my application, marketing, and offers of
+              products and services. I understand message and data rates may
+              apply, that message frequency varies, that I may reply STOP to any
+              text message to opt out or HELP for help, and that I may revoke
+              this consent at any time by calling{" "}
+              <a
+                href={`tel:${RATE_CONFIG.phone.replace(/[^0-9+]/g, "")}`}
+                className="font-bold text-sky-600 hover:underline"
+              >
+                {RATE_CONFIG.phone}
+              </a>{" "}
+              or emailing{" "}
+              <a
+                href={`mailto:${RATE_CONFIG.email}`}
+                className="font-bold text-sky-600 hover:underline"
+              >
+                {RATE_CONFIG.email}
+              </a>
+              .
+            </FormConsent>
+
+            {/* Mandatory Visibly Rendered TCPA Disclosure */}
+            <p className="text-xs text-slate-500 pl-7 leading-relaxed">
+              I understand that my consent to receive these calls and messages
+              is not a condition of obtaining any loan, credit, goods, or
+              services from Ryer Loans.
+            </p>
+          </div>
         </div>
       </div>
 
-      {/* Navigation */}
-      <FormNavigation
-        onBack={onBack}
-        onNext={submitApplication}
-        nextLabel="Submit My Application"
-        nextDisabled={!requiredConsents}
-      />
+      {/* Navigation & Submit Microcopy */}
+      <div className="mt-8 space-y-3">
+        <FormNavigation
+          onBack={onBack}
+          onNext={submitApplication}
+          nextLabel="Submit Application"
+          nextDisabled={!requiredConsents}
+        />
+
+        {/* Submit button microcopy */}
+        <p className="text-center text-xs text-slate-500 max-w-xl mx-auto leading-normal">
+          By submitting, you confirm the above. Submitting an application does
+          not obligate you to accept a loan, and Ryer Loans is under no
+          obligation to extend one. Applications are subject to verification and
+          approval. Ryer Loans will never ask you to send money or pay a fee
+          before your loan is funded.
+        </p>
+      </div>
     </FormSection>
   );
 }

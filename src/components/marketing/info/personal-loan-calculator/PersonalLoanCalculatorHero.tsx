@@ -22,7 +22,7 @@ export default function PersonalLoanCalculatorHero() {
         </div>
 
         {/* Page Heading */}
-        <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight max-w-4xl">
+        <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight max-w-7xl">
           Personal Loan Payment & Total Cost Calculator
         </h1>
 

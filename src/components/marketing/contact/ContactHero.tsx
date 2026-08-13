@@ -1,7 +1,7 @@
 export default function ContactHero() {
   return (
     <section className="pt-20 pb-10 px-4 bg-[#030712] border-b border-[#1f293d]/50">
-      <div className="max-w-4xl mx-auto space-y-4">
+      <div className="max-w-7xl mx-auto space-y-4">
         <span className="text-sky-400 text-xs font-semibold uppercase tracking-widest">
           Support & Inquiries
         </span>

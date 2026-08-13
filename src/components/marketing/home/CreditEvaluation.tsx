@@ -1,30 +1,46 @@
 export default function CreditEvaluation() {
   return (
-    <section className="py-16 px-4 bg-[#030712] border-t border-[#1f293d]/50 text-gray-300">
-      <div className="max-w-6xl mx-auto space-y-6">
-        <h2 className="text-2xl sm:text-3xl font-sans font-semibold text-white tracking-tight">
+    <section className="border-t border-slate-200 bg-[#F8F6F0] px-4 py-16 text-[#13294B] sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-6xl space-y-6">
+        <h2 className="text-2xl font-semibold tracking-tight text-[#13294B] sm:text-3xl">
           Every Credit Profile Gets a Real Look
         </h2>
 
-        <p className="font-mono text-sm sm:text-base text-gray-400 leading-relaxed">
+        <p className="text-sm leading-relaxed text-slate-600 sm:text-base">
           We accept applications across the full credit spectrum — excellent,
           good, fair, poor, and thin-file borrowers with almost no credit
           history at all. A low score does not send your application to an
           automatic rejection queue.
         </p>
 
-        <p className="font-mono text-sm sm:text-base text-gray-400 leading-relaxed">
+        <p className="text-sm leading-relaxed text-slate-600 sm:text-base">
           That is a genuine commitment, and it is worth being precise about what
           it means and what it does not.
         </p>
 
-        <div className="grid sm:grid-cols-2 gap-6 pt-4 font-mono text-xs sm:text-sm">
+        <div className="grid gap-6 pt-4 sm:grid-cols-2">
           {/* What it means */}
-          <div className="bg-[#050b14] p-5 rounded-xl border border-[#1f293d] space-y-2">
-            <h3 className="text-sky-300 font-semibold text-base">
-              What it means
-            </h3>
-            <p className="text-gray-400 leading-relaxed">
+          <div className="rounded-2xl border border-blue-100 bg-white p-6 shadow-sm">
+            <div className="mb-4 flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-50 text-[#1558D6]">
+                <svg
+                  className="h-5 w-5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <circle cx="12" cy="12" r="9" />
+                  <path d="m8 12 2.5 2.5L16 9" />
+                </svg>
+              </div>
+
+              <h3 className="text-base font-semibold text-[#1558D6]">
+                What it means
+              </h3>
+            </div>
+
+            <p className="text-sm leading-relaxed text-slate-600 sm:text-base">
               Your score is one input among several, not a gate. We weigh your
               income stability, your banking history, your existing obligations,
               and how consistently money moves through your account. A 580 score
@@ -35,11 +51,27 @@ export default function CreditEvaluation() {
           </div>
 
           {/* What it does not mean */}
-          <div className="bg-[#050b14] p-5 rounded-xl border border-[#1f293d] space-y-2">
-            <h3 className="text-rose-300 font-semibold text-base">
-              What it does not mean
-            </h3>
-            <p className="text-gray-400 leading-relaxed">
+          <div className="rounded-2xl border border-rose-100 bg-white p-6 shadow-sm">
+            <div className="mb-4 flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-rose-50 text-rose-600">
+                <svg
+                  className="h-5 w-5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <circle cx="12" cy="12" r="9" />
+                  <path d="M8.5 8.5l7 7M15.5 8.5l-7 7" />
+                </svg>
+              </div>
+
+              <h3 className="text-base font-semibold text-rose-600">
+                What it does not mean
+              </h3>
+            </div>
+
+            <p className="text-sm leading-relaxed text-slate-600 sm:text-base">
               Guaranteed approval. No lender on earth can promise that, and any
               website telling you otherwise is either breaking advertising law
               or is not actually a lender. We decline applications. If we

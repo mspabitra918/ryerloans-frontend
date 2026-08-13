@@ -26,7 +26,7 @@ export default function CityLoanPage({ data }: Props) {
             <h1 className="mt-4 text-4xl font-bold tracking-tight text-white">
               Personal Loans in {data.city}, California
             </h1>
-            <p className="mt-6 text-lg leading-8 text-slate-200 max-w-3xl">
+            <p className="mt-6 text-lg leading-8 text-slate-200 max-w-7xl">
               {data.intro}
             </p>
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">
@@ -48,8 +48,12 @@ export default function CityLoanPage({ data }: Props) {
       </section>
 
       <LoanTerms city={data.city} />
-      <LocalEconomy data={data.economy} />
-      <WhyResidentsBorrow city={data.city} reasons={data.borrowingReasons} />
+      <LocalEconomy city={data.city} data={data.economy} />
+      <WhyResidentsBorrow
+        city={data.city}
+        reasons={data.borrowingReasons}
+        reasonDetails={data.borrowingDetails}
+      />
       <FinancialResources
         city={data.city}
         resources={data.financialResources}

@@ -2,7 +2,7 @@ import { RATE_CONFIG } from "@/src/lib/config";
 export default function ContactPhone() {
   return (
     <section className="py-12 px-4 bg-white border-b border-slate-200">
-      <div className="max-w-4xl mx-auto space-y-6">
+      <div className="max-w-7xl mx-auto space-y-6">
         <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
           By Phone — the fastest route
         </h2>

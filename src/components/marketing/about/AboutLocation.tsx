@@ -3,7 +3,7 @@ import { RATE_CONFIG } from "@/src/lib/config";
 export default function AboutLocation() {
   return (
     <section className="py-16 px-4 bg-white border-b border-slate-200">
-      <div className="max-w-4xl mx-auto space-y-4">
+      <div className="max-w-7xl mx-auto space-y-4">
         <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
           Where We Are
         </h2>

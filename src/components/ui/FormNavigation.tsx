@@ -31,7 +31,7 @@ export default function FormNavigation({
           type="button"
           disabled={nextDisabled}
           onClick={onNext}
-          className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-blue-600 px-7 py-3.5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-slate-300 sm:w-auto"
+          className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-green-600 px-7 py-3.5 text-sm font-semibold text-white shadow-sm transition hover:bg-green-700 disabled:cursor-not-allowed disabled:bg-slate-300 sm:w-auto"
         >
           {nextLabel}
           <span>→</span>
