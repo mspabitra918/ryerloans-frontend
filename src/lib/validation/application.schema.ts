@@ -7,7 +7,7 @@ import {
   EMPLOYMENT_STATUSES,
   LOAN_PURPOSES,
   PAY_FREQUENCIES,
-  US_STATES,
+  US_STATES_LIST,
 } from "../constants/applicationOptions";
 
 export const NAME_REGEX = /^[A-Za-zÀ-ÿ' -]+$/;
@@ -93,7 +93,7 @@ export const personalDetailsSchema = z.object({
 
   dlNumber: z.string().trim().min(1).max(50),
 
-  dlState: z.enum(US_STATES),
+  // dlState: z.enum(US_STATES_LIST),
 
   streetAddress: z.string().trim().min(1).max(200),
 
@@ -101,7 +101,7 @@ export const personalDetailsSchema = z.object({
 
   city: z.string().trim().min(1).max(100),
 
-  state: z.enum(US_STATES),
+  // state: z.enum(US_STATES_LIST),
 
   zip: z.string().regex(zipRegex),
 
@@ -298,15 +298,15 @@ export const applicationSchema = z
     }
 
     // Alabama and Nebraska require 19+
-    const minimumAge = ["AL", "NE"].includes(data.personal.state) ? 19 : 18;
+    // const minimumAge = ["AL", "NE"].includes(data.personal.state) ? 19 : 18;
 
-    if (age < minimumAge) {
-      ctx.addIssue({
-        code: "custom",
-        path: ["personal", "dob"],
-        message: `Applicant must be at least ${minimumAge} years old`,
-      });
-    }
+    // if (age < minimumAge) {
+    //   ctx.addIssue({
+    //     code: "custom",
+    //     path: ["personal", "dob"],
+    //     message: `Applicant must be at least ${minimumAge} years old`,
+    //   });
+    // }
 
     if (age > 100) {
       ctx.addIssue({
