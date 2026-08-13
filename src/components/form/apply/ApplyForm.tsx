@@ -44,7 +44,7 @@ export default function ApplyForm() {
     ? Number(formData.loan.amount).toLocaleString("en-US")
     : "0";
 
-  const apr = formData.loan?.apr || 10;
+  const apr = 10;
 
   return (
     <div className="relative z-10 mx-auto w-full max-w-7xl px-4 -mt-10 sm:-mt-12 sm:px-6 pb-16">
