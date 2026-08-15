@@ -9,7 +9,7 @@ export function proxy(request: NextRequest) {
     "/admin",
     // "/personal-loans/california",
     "/loan-status",
-    "/apply",
+    // "/apply",
     "/reviews",
     "/bank-verification",
     "/investments",

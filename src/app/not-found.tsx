@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import {
   FileQuestion,
@@ -7,8 +8,10 @@ import {
   PhoneCall,
 } from "lucide-react";
 import { RATE_CONFIG } from "@/src/lib/config";
+import { useRouter } from "next/navigation";
 
 export default function NotFound() {
+  const route = useRouter();
   return (
     <div className="min-h-[80vh] w-full flex items-center justify-center px-4 sm:px-6 lg:px-8 py-16 text-slate-700">
       <div className="max-w-md w-full text-center space-y-8">
@@ -35,13 +38,13 @@ export default function NotFound() {
 
         {/* Action Buttons */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
-          <Link
-            href="/apply"
+          <button
+            onClick={() => route.back()}
             className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-sky-600 hover:bg-sky-700 text-white font-semibold px-6 py-3 rounded-xl shadow transition text-sm"
           >
             <ArrowLeft className="w-4 h-4" />
-            <span>Back to Application</span>
-          </Link>
+            <span>Back</span>
+          </button>
 
           <Link
             href="/"

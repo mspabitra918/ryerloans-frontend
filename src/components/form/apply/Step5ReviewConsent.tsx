@@ -32,17 +32,19 @@ export default function Step5ReviewConsent({
     }
 
     try {
-      const response = await fetch("/api/applications", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
+      // const response = await fetch("/api/applications", {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify(data),
+      // });
 
-      if (!response.ok) {
-        throw new Error("Application submission failed");
-      }
+      // if (!response.ok) {
+      //   throw new Error("Application submission failed");
+      // }
+
+      console.log(data);
 
       window.location.href = "/apply/success";
     } catch (error) {
