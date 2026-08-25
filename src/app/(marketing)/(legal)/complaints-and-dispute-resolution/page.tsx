@@ -8,7 +8,7 @@ export const metadata = constructMetadata({
     "How to submit a formal complaint to Ryer Loans, our internal dispute resolution timeline, and contact information for regulatory oversight agencies.",
   path: "/complaints-and-dispute-resolution",
   keywords: [
-    "ryer loans complaints",
+    "Ryer Loans complaints",
     "dispute resolution process",
     "cfpb complaint",
     "customer support escalation",

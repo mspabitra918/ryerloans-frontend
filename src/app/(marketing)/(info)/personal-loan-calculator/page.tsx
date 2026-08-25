@@ -13,7 +13,7 @@ export const metadata = constructMetadata({
     "amortization schedule download",
     "10 percent fixed APR personal loan",
     "monthly personal loan cost simulator",
-    "ryer loans calculator",
+    "Ryer Loans calculator",
   ],
 });
 

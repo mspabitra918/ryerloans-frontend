@@ -13,7 +13,7 @@ export const metadata = constructMetadata({
     "clarity services teletrack credit check",
     "predatory loan red flags",
     "payday loan alternative 10 percent APR",
-    "ryer loans soft credit check",
+    "Ryer Loans soft credit check",
   ],
 });
 

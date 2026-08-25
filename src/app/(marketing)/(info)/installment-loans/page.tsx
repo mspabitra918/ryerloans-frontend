@@ -13,7 +13,7 @@ export const metadata = constructMetadata({
     "installment loan vs payday loan",
     "fixed rate installment loan",
     "installment loan amortization schedule",
-    "ryer loans installment loan",
+    "Ryer Loans installment loan",
   ],
 });
 

@@ -1,4 +1,5 @@
 import { ApplicationFormData } from "@/src/lib/types/application";
+import { api } from "@/src/lib/api";
 import FormConsent from "../../ui/FormConsent";
 import FormNavigation from "../../ui/FormNavigation";
 import FormReviewCard from "../../ui/FormReviewCard";
@@ -32,21 +33,84 @@ export default function Step5ReviewConsent({
     }
 
     try {
-      // const response = await fetch("/api/applications", {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      //   body: JSON.stringify(data),
-      // });
+      const qs = new URLSearchParams(window.location.search);
 
-      // if (!response.ok) {
-      //   throw new Error("Application submission failed");
-      // }
+      const payload = {
+        amount_requested: data.loan.amount,
+        loan_purpose: data.loan.purpose,
+        other_purpose: data.loan.otherPurpose || undefined,
 
-      console.log(data);
+        first_name: data.personal.firstName,
+        last_name: data.personal.lastName,
+        email: data.personal.email,
+        phone: data.personal.phone,
+        dob: `${data.personal.dobYear}-${String(Number(data.personal.dobMonth)).padStart(2, "0")}-${String(Number(data.personal.dobDay)).padStart(2, "0")}`,
+        ssn: data.personal.ssn,
+        dl_number: data.personal.dlNumber,
+        dl_state: data.personal.dlState,
 
-      window.location.href = "/apply/success";
+        street_address: data.personal.streetAddress,
+        address_line_2: data.personal.addressLine2,
+        city: data.personal.city,
+        state: data.personal.state,
+        zip: data.personal.zip,
+        years_at_address: data.personal.yearsAtAddress,
+        housing_status: data.personal.housingStatus,
+        monthly_housing_cost: data.personal.monthlyHousingCost,
+
+        employment_status: data.employment.employmentStatus,
+        employer_name: data.employment.employerName,
+        job_title: data.employment.jobTitle,
+        employment_length_mo: data.employment.employmentLengthMo,
+        employer_phone: data.employment.employerPhone,
+        pay_frequency: data.employment.payFrequency,
+        next_pay_date: data.employment.nextPayDate,
+        net_monthly_income: Number(data.employment.netMonthlyIncome),
+        income_source: data.employment.incomeSource,
+
+        owns_vehicle: data.employment.ownsVehicle,
+        vehicle_year: data.employment.vehicleYear,
+        vehicle_make: data.employment.vehicleMake,
+        vehicle_model: data.employment.vehicleModel,
+        vehicle_paid_off: data.employment.vehiclePaidOff,
+
+        bank_name: data.banking.bankName,
+        account_type: data.banking.accountType,
+        routing_number: data.banking.routingNumber,
+        account_number: data.banking.accountNumber,
+        account_age_months: data.banking.accountAge,
+        current_balance_band: data.banking.currentBalanceBand,
+        direct_deposit: data.banking.directDeposit,
+
+        consent_esign: data.consent.esign,
+        consent_privacy: data.consent.privacy,
+        consent_credit_pull: data.consent.creditPull,
+        consent_tcpa: data.consent.tcpa,
+        consent_tcpa_text: `I authorize Ryer Loans, its affiliates, and its service providers
+              to contact me at the telephone number(s) and email address I have
+              provided, including my wireless number, using automatic telephone
+              dialing systems, artificial or prerecorded voice messages,
+              ringless voicemail, text/SMS messages, and email — for purposes
+              including servicing my application, marketing, and offers of
+              products and services. I understand message and data rates may
+              apply, that message frequency varies, that I may reply STOP to any
+              text message to opt out or HELP for help, and that I may revoke
+              this consent at any time by calling`,
+        consent_esign_at: new Date().toISOString(),
+
+        referrer: document.referrer || undefined,
+        utm_source: qs.get("utm_source") || undefined,
+        utm_medium: qs.get("utm_medium") || undefined,
+        utm_campaign: qs.get("utm_campaign") || undefined,
+        landing_page: window.location.href,
+        form_started_at: qs.get("form_started_at") || new Date().toISOString(),
+      };
+
+      await api.apply(payload as any);
+
+      window.location.href = `/apply/success?reference=${encodeURIComponent(
+        response.reference,
+      )}&email=${encodeURIComponent(formData.email)}`;
     } catch (error) {
       console.error(error);
     }

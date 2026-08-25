@@ -8,7 +8,7 @@ export const metadata = constructMetadata({
     "Ryer Loans is committed to digital accessibility for all users. View our conformance standards, supported features, and how to report an accessibility barrier.",
   path: "/accessibility-statement",
   keywords: [
-    "ryer loans accessibility statement",
+    "Ryer Loans accessibility statement",
     "wcag 2.1 level aa",
     "digital accessibility",
     "disability support",

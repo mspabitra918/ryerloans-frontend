@@ -647,8 +647,8 @@ export default function InstallmentLoansContent() {
             <p className="text-slate-600 leading-relaxed">
               Selecting the right loan term involves balancing your monthly cash
               flow against total interest expense. Compare how term lengths
-              impact a <strong>$10,000 principal balance</strong> at Ryer Loans'
-              fixed 10.00% APR:
+              impact a <strong>$10,000 principal balance</strong> at Brook
+              Loans' fixed 10.00% APR:
             </p>
 
             <div className="grid gap-4 sm:grid-cols-3">

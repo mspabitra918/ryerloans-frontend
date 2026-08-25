@@ -8,10 +8,10 @@ export const metadata = constructMetadata({
     "Read the Terms of Use governing your access to and use of the Ryer Loans website, personal loan applications, and services.",
   path: "/terms-of-use",
   keywords: [
-    "ryer loans terms of use",
-    "ryer loans terms and conditions",
+    "Ryer Loans terms of use",
+    "Ryer Loans terms and conditions",
     "personal loan terms",
-    "legal terms ryer loans",
+    "legal terms Ryer Loans",
   ],
 });
 

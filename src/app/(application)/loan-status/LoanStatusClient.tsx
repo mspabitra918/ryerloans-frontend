@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { ApplicationData } from "@/src/lib/types/loanStatus";
+import { api, ApiError } from "@/src/lib/api";
+import { toApplicationData } from "@/src/lib/utils/loanStatusMapper";
 import StatusLookupForm from "@/src/components/loan-status/StatusLookupForm";
 import StatusBanner from "@/src/components/loan-status/StatusBanner";
 import ActionAlerts from "@/src/components/loan-status/ActionAlerts";
@@ -11,29 +13,30 @@ import SecurityNotice from "@/src/components/loan-status/SecurityNotice";
 export default function LoanStatusClient() {
   const [loading, setLoading] = useState(false);
   const [appData, setAppData] = useState<ApplicationData | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleLookup = (appId: string, email: string) => {
+  const handleLookup = async (appId: string, email: string) => {
     setLoading(true);
+    setError(null);
 
-    setTimeout(() => {
-      setAppData({
-        id: appId.toUpperCase(),
-        submittedDate: "August 4, 2026",
-        amountRequested: 10000,
-        email: email,
-        hasCalledIn: false,
-        bankStatus: "pending",
-        bankCompletedDate: "August 5, 2026",
-        depositStatus: "not_started",
-        fundingStatus: "pending",
-        accountEnding: "4821",
-        fundedDate: "August 6, 2026",
-        firstPaymentDue: "September 5, 2026",
-        declinedDate: "August 5, 2026",
-        reapplyDate: "November 3, 2026",
-      });
+    try {
+      const response = await api.publicStatus(appId, email);
+      setAppData(toApplicationData(response, email.trim()));
+    } catch (err) {
+      /*
+       * §6.2: never reveal whether an Application ID exists. The API returns one
+       * generic message for a wrong ID and a wrong email alike, so this shows
+       * whatever it said rather than adding a guess of its own.
+       */
+      setAppData(null);
+      setError(
+        err instanceof ApiError
+          ? err.message
+          : "We could not check that just now. Please try again shortly.",
+      );
+    } finally {
       setLoading(false);
-    }, 600);
+    }
   };
 
   return (
@@ -51,6 +54,15 @@ export default function LoanStatusClient() {
 
       {/* Form */}
       <StatusLookupForm onLookup={handleLookup} loading={loading} />
+
+      {error ? (
+        <p
+          role="alert"
+          className="mx-auto max-w-lg rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-center text-sm text-red-800"
+        >
+          {error}
+        </p>
+      ) : null}
 
       {/* Results View */}
       {appData && (

@@ -8,7 +8,7 @@ export const metadata = constructMetadata({
     "Information regarding your privacy rights under CCPA/CPRA, including our policy on not selling or sharing personal data for targeted advertising.",
   path: "/do-not-sell-my-personal-information",
   keywords: [
-    "ryer loans do not sell my info",
+    "Ryer Loans do not sell my info",
     "ccpa privacy rights",
     "cpra california resident rights",
     "opt-out of data sharing",

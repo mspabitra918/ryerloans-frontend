@@ -13,7 +13,7 @@ export const metadata = constructMetadata({
     "unsecured vs secured loan",
     "personal loan default timeline",
     "fixed rate unsecured loan",
-    "ryer loans personal loan",
+    "Ryer Loans personal loan",
   ],
 });
 

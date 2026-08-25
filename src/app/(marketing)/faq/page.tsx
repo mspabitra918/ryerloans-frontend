@@ -9,7 +9,7 @@ export const metadata = constructMetadata({
     "Answers on personal loan eligibility, our fixed 10% APR, bad credit applications, bank verification, funding times, and how to check your status.",
   path: "/faq",
   keywords: [
-    "ryer loans faq",
+    "Ryer Loans faq",
     "personal loan questions",
     "personal loan eligibility",
     "10 percent fixed apr loan",

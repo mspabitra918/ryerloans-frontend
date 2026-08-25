@@ -8,7 +8,7 @@ export const metadata = constructMetadata({
     "Learn how Ryer Loans protects user data through 256-bit encryption, FTC Safeguards compliance, secure Plaid verification, and strict fraud prevention.",
   path: "/security-policy",
   keywords: [
-    "ryer loans security policy",
+    "Ryer Loans security policy",
     "data protection personal loan",
     "ftc safeguards compliance",
     "plaid bank verification security",

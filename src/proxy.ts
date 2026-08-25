@@ -8,10 +8,12 @@ export function proxy(request: NextRequest) {
     // "/thank-you",
     "/admin",
     // "/personal-loans/california",
-    "/loan-status",
+    // "/loan-status",
+    // "bank-verification",
     // "/apply",
     "/reviews",
-    "/bank-verification",
+    "sign-agreement",
+    "confirm-deposit",
     "/investments",
   ];
 

@@ -9,7 +9,7 @@ export const metadata = constructMetadata({
   path: "/e-sign-consent",
   keywords: [
     "e-sign consent",
-    "electronic signatures ryer loans",
+    "electronic signatures Ryer Loans",
     "e-sign act disclosure",
     "electronic records consent",
   ],

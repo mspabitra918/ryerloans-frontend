@@ -8,9 +8,9 @@ export const metadata = constructMetadata({
     "Verified reviews from Ryer Loans borrowers. Every review comes from a borrower with a funded loan.",
   path: "/reviews",
   keywords: [
-    "ryer loans reviews",
+    "Ryer Loans reviews",
     "verified borrower reviews",
-    "ryer loans feedback",
+    "Ryer Loans feedback",
     "direct lender reviews",
   ],
 });

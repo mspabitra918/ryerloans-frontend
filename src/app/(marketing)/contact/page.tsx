@@ -11,10 +11,10 @@ export const metadata = constructMetadata({
     "Reach Ryer Loans by phone at (747) 200-5220, by email, or at our Long Beach office. Existing applicants: have your six-digit Application ID ready.",
   path: "/contact",
   keywords: [
-    "contact ryer loans",
-    "ryer loans phone number",
-    "ryer loans long beach ca",
-    "ryer loans customer service",
+    "contact Ryer Loans",
+    "Ryer Loans phone number",
+    "Ryer Loans long beach ca",
+    "Ryer Loans customer service",
   ],
 });
 

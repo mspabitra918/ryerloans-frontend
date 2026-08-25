@@ -13,7 +13,7 @@ export const metadata = constructMetadata({
     "Ryer Loans is a direct personal lender offering $2,000–$25,000 at a fixed 10% APR. Learn who we are, how we underwrite, and why we publish one rate.",
   path: "/about",
   keywords: [
-    "about ryer loans",
+    "about Ryer Loans",
     "direct personal lender",
     "long beach ca lender",
     "fixed apr personal loans",

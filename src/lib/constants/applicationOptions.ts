@@ -5,7 +5,7 @@ export const employmentStatusOptions = [
   },
   {
     label: "Part-Time",
-    value: "Part-Time",
+    value: "Employed Part-Time",
   },
   {
     label: "Self-Employed",
@@ -32,19 +32,19 @@ export const employmentStatusOptions = [
 export const payFrequencyOptions = [
   {
     label: "Weekly",
-    value: "weekly",
+    value: "Weekly",
   },
   {
     label: "Biweekly",
-    value: "biweekly",
+    value: "Bi-Weekly",
   },
   {
     label: "Semimonthly",
-    value: "semimonthly",
+    value: "Semimonthly",
   },
   {
     label: "Monthly",
-    value: "monthly",
+    value: "Monthly",
   },
 ];
 
@@ -208,10 +208,10 @@ export const EMPLOYMENT_STATUSES = [
 ] as const;
 
 export const PAY_FREQUENCIES = [
-  "weekly",
-  "biweekly",
-  "semimonthly",
-  "monthly",
+  "Weekly",
+  "Bi-Weekly",
+  "Semi-Monthly",
+  "Monthly",
 ] as const;
 
 export const ACCOUNT_TYPES = ["checking", "savings"] as const;
@@ -229,11 +229,11 @@ export const ACCOUNT_AGE_BANDS = ["<3", "3-6", "6-12", "12-24", "24+"] as const;
 export const accountTypeOptions = [
   {
     label: "Checking",
-    value: "checking",
+    value: "Checking",
   },
   {
     label: "Savings",
-    value: "savings",
+    value: "Savings",
   },
 ];
 
@@ -252,11 +252,11 @@ export const accountAgeOptions = [
   },
   {
     label: "1–2 years",
-    value: "12-24",
+    value: "1–2 yrs",
   },
   {
     label: "2+ years",
-    value: "24+",
+    value: "2+ yrs",
   },
 ];
 

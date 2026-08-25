@@ -13,7 +13,7 @@ export const metadata = constructMetadata({
     "loans for unexpected expenses",
     "urgent personal loan",
     "emergency financial assistance",
-    "ryer loans emergency loan",
+    "Ryer Loans emergency loan",
   ],
 });
 

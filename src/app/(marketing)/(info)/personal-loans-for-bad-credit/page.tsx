@@ -12,7 +12,7 @@ export const metadata = constructMetadata({
     "bad credit installment loan",
     "no minimum credit score loan",
     "low credit score personal loan",
-    "ryer loans bad credit",
+    "Ryer Loans bad credit",
   ],
 });
 

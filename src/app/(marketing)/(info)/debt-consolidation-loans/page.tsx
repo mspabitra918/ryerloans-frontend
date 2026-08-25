@@ -14,7 +14,7 @@ export const metadata = constructMetadata({
     "combine debt 10 percent fixed APR",
     "debt consolidation calculator",
     "pay off credit card debt fast",
-    "ryer loans debt consolidation",
+    "Ryer Loans debt consolidation",
   ],
 });
 

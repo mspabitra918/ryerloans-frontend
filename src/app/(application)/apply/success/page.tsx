@@ -1,5 +1,5 @@
 "use client";
-import Link from "next/link";
+
 import {
   CheckCircle2,
   PhoneCall,
@@ -10,6 +10,7 @@ import {
   AlertTriangle,
 } from "lucide-react";
 import { useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { RATE_CONFIG } from "@/src/lib/config";
 
 interface ApplicationSuccessProps {
@@ -18,15 +19,29 @@ interface ApplicationSuccessProps {
 }
 
 export default function ApplicationSuccess({
-  applicationId = "RX-849201",
-  email = "applicant@example.com",
+  applicationId,
+  email,
 }: ApplicationSuccessProps) {
+  const searchParams = useSearchParams();
+
+  // Get values from URL if they are not passed as props
+  const reference = applicationId || searchParams.get("reference") || "N/A";
+
+  const applicantEmail = email || searchParams.get("email") || "";
+
   const [copied, setCopied] = useState(false);
 
-  const handleCopy = () => {
-    navigator.clipboard.writeText(applicationId);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(reference);
+      setCopied(true);
+
+      setTimeout(() => {
+        setCopied(false);
+      }, 2000);
+    } catch (error) {
+      console.error("Failed to copy application ID:", error);
+    }
   };
 
   const rawPhone = RATE_CONFIG.phone.replace(/[^0-9+]/g, "");
@@ -38,9 +53,11 @@ export default function ApplicationSuccess({
         <div className="inline-flex items-center justify-center w-16 h-16 bg-emerald-100 rounded-full text-emerald-600 mb-2">
           <CheckCircle2 className="w-10 h-10" />
         </div>
+
         <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
           Application Received
         </h1>
+
         <p className="text-slate-600 max-w-lg mx-auto text-base sm:text-lg">
           Thank you for applying with Ryer Loans. We have received your
           submission.
@@ -55,20 +72,23 @@ export default function ApplicationSuccess({
 
         <div className="inline-flex items-center gap-3 bg-slate-50 border border-slate-200 px-5 py-3 rounded-xl">
           <span className="text-2xl sm:text-3xl font-mono font-bold text-slate-900 tracking-wider">
-            #{applicationId}
+            #{reference}
           </span>
-          <button
-            onClick={handleCopy}
-            type="button"
-            className="p-2 text-slate-500 hover:text-slate-900 transition rounded-lg hover:bg-slate-200"
-            title="Copy Application ID"
-          >
-            {copied ? (
-              <Check className="w-5 h-5 text-emerald-600" />
-            ) : (
-              <Copy className="w-5 h-5" />
-            )}
-          </button>
+
+          {reference !== "N/A" && (
+            <button
+              onClick={handleCopy}
+              type="button"
+              className="p-2 text-slate-500 hover:text-slate-900 transition rounded-lg hover:bg-slate-200"
+              title="Copy Application ID"
+            >
+              {copied ? (
+                <Check className="w-5 h-5 text-emerald-600" />
+              ) : (
+                <Copy className="w-5 h-5" />
+              )}
+            </button>
+          )}
         </div>
 
         <p className="text-xs sm:text-sm text-slate-600 max-w-md mx-auto">
@@ -77,14 +97,17 @@ export default function ApplicationSuccess({
         </p>
 
         {/* Confirmation Email Alert */}
-        <div className="pt-4 border-t border-slate-100 flex items-center justify-center gap-2 text-xs sm:text-sm text-slate-500">
-          <Mail className="w-4 h-4 text-slate-400 flex-shrink-0" />
-          <span>
-            A confirmation email is on its way to{" "}
-            <strong className="text-slate-700">{email}</strong> — check spam if
-            it has not arrived in ten minutes.
-          </span>
-        </div>
+        {applicantEmail && (
+          <div className="pt-4 border-t border-slate-100 flex items-center justify-center gap-2 text-xs sm:text-sm text-slate-500">
+            <Mail className="w-4 h-4 text-slate-400 flex-shrink-0" />
+
+            <span>
+              A confirmation email is on its way to{" "}
+              <strong className="text-slate-700">{applicantEmail}</strong> —
+              check spam if it has not arrived in ten minutes.
+            </span>
+          </div>
+        )}
       </div>
 
       {/* Required Call Verification Action Card */}
@@ -93,13 +116,16 @@ export default function ApplicationSuccess({
           <div className="p-3 bg-amber-100 text-amber-800 rounded-xl flex-shrink-0">
             <AlertTriangle className="w-6 h-6" />
           </div>
+
           <div className="space-y-1">
             <span className="text-xs font-bold uppercase tracking-wide text-amber-800">
               Action Required
             </span>
+
             <h2 className="text-xl sm:text-2xl font-bold text-slate-900">
               Next step: call {RATE_CONFIG.phone}
             </h2>
+
             <p className="text-slate-700 text-sm sm:text-base leading-relaxed pt-1">
               Your application is <strong>on hold</strong> until we speak with
               you. This is a required verification step, not an optional one.
@@ -121,9 +147,10 @@ export default function ApplicationSuccess({
           {/* Hours of Operation */}
           <div className="flex items-center gap-2 text-xs sm:text-sm text-slate-600 font-medium text-center sm:text-left">
             <Clock className="w-4 h-4 text-slate-400 flex-shrink-0" />
+
             <span>
-              Monday–Friday 8 AM–6 PM PT <br className="hidden sm:inline" />·
-              Saturday 9 AM–2 PM PT
+              Monday–Friday 8 AM–6 PM PT
+              <br className="hidden sm:inline" />· Saturday 9 AM–2 PM PT
             </span>
           </div>
         </div>

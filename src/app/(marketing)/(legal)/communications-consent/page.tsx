@@ -9,7 +9,7 @@ export const metadata = constructMetadata({
   path: "/communications-consent",
   keywords: [
     "tcpa consent",
-    "communications consent ryer loans",
+    "communications consent Ryer Loans",
     "telephone consumer protection act disclosure",
     "opt out marketing calls texts",
   ],

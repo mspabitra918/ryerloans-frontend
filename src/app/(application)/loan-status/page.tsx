@@ -8,7 +8,7 @@ export const metadata = constructMetadata({
   path: "/loan-status",
   keywords: [
     "check loan status",
-    "ryer loans application status",
+    "Ryer Loans application status",
     "track loan application",
     "personal loan status lookup",
   ],

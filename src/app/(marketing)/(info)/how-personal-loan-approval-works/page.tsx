@@ -14,7 +14,7 @@ export const metadata = constructMetadata({
     "instant approval personal loans",
     "adverse action notice explanation",
     "personal loan eligibility factors",
-    "ryer loans approval process",
+    "Ryer Loans approval process",
   ],
 });
 

@@ -8,7 +8,7 @@ export const metadata = constructMetadata({
     "Review how Ryer Loans uses functional, analytics, and advertising cookies, as well as how to manage preferences and Global Privacy Control (GPC) signals.",
   path: "/cookie-policy",
   keywords: [
-    "ryer loans cookie policy",
+    "Ryer Loans cookie policy",
     "global privacy control gpc",
     "cookie preference center",
     "third party cookies plaid google analytics",

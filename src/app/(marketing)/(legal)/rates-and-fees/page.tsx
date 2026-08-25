@@ -8,7 +8,7 @@ export const metadata = constructMetadata({
     "Explore Ryer Loans interest rates, simple interest calculations, zero prepayment penalties, and representative payment terms.",
   path: "/rates-and-fees",
   keywords: [
-    "ryer loans rates and fees",
+    "Ryer Loans rates and fees",
     "personal loan interest rate",
     "no origination fee loan",
     "fixed apr loan terms",

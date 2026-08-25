@@ -8,9 +8,9 @@ export const metadata = constructMetadata({
     "Review state lending licenses, regulatory authority contact information, and state-specific disclosure requirements for Ryer Loans.",
   path: "/state-disclosures",
   keywords: [
-    "ryer loans state disclosures",
+    "Ryer Loans state disclosures",
     "california financing law license",
-    "nmls consumer access ryer loans",
+    "nmls consumer access Ryer Loans",
     "state lending licenses",
   ],
 });

@@ -21,30 +21,43 @@ interface Props {
   onNext: () => void;
 }
 
+// Format phone helper for (XXX) XXX-XXXX format
+const formatPhoneNumber = (value: string): string => {
+  const digits = value.replace(/\D/g, "").slice(0, 10);
+  if (digits.length <= 3) return digits;
+  if (digits.length <= 6) return `(${digits.slice(0, 3)}) ${digits.slice(3)}`;
+  return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}`;
+};
+
 export default function Step3EmploymentIncome({
   data,
   update,
   onBack,
   onNext,
 }: Props) {
+  // Fix: Match exact enum string "Employed Part-Time"
   const requiresEmployer = [
     "Employed Full-Time",
-    "Part-Time",
+    "Employed Part-Time",
     "Self-Employed",
     "Military",
   ].includes(data.employmentStatus);
 
+  const currentYear = new Date().getFullYear();
+  const vehicleYearNum = Number(data.vehicleYear);
+
   const employerValid = requiresEmployer
     ? data.employerName.trim().length > 0 &&
       data.jobTitle.trim().length > 0 &&
-      Number(data.employmentLengthMo) > 0 &&
-      data.employerPhone.replace(/\D/g, "").length >= 10
+      Number(data.employmentLengthMo) >= 0 &&
+      data.employerPhone.replace(/\D/g, "").length === 10
     : true;
 
   const vehicleValid =
     data.ownsVehicle === false ||
     (data.ownsVehicle === true &&
-      !!data.vehicleYear &&
+      vehicleYearNum >= 1900 &&
+      vehicleYearNum <= currentYear + 1 &&
       data.vehicleMake.trim().length > 0 &&
       data.vehicleModel.trim().length > 0 &&
       data.vehiclePaidOff !== null);
@@ -161,10 +174,11 @@ export default function Step3EmploymentIncome({
                   value={data.employerPhone}
                   onChange={(event) =>
                     update({
-                      employerPhone: event.target.value,
+                      employerPhone: formatPhoneNumber(event.target.value),
                     })
                   }
                   placeholder="(555) 555-5555"
+                  maxLength={14}
                 />
               </FormField>
             </div>
@@ -289,6 +303,8 @@ export default function Step3EmploymentIncome({
                     id="vehicle-year"
                     type="number"
                     inputMode="numeric"
+                    min={1900}
+                    max={currentYear + 1}
                     value={data.vehicleYear}
                     onChange={(event) =>
                       update({

@@ -9,10 +9,10 @@ export const metadata = constructMetadata({
     "Learn what personal information Ryer Loans collects, how we use and protect it, your CCPA/CPRA rights, and our GLBA Privacy Notice.",
   path: "/privacy-policy",
   keywords: [
-    "ryer loans privacy policy",
+    "Ryer Loans privacy policy",
     "glba privacy notice",
-    "ccpa rights ryer loans",
-    "data protection ryer loans",
+    "ccpa rights Ryer Loans",
+    "data protection Ryer Loans",
   ],
 });
 

@@ -247,7 +247,7 @@ export default function TermsContent() {
               13. Limitation of Liability
             </h2>
             <div className="bg-slate-100 p-4 rounded-xl border border-slate-200 font-mono text-xs text-slate-800 leading-relaxed uppercase">
-              TO THE MAXIMUM EXTENT PERMITTED BY LAW, RYER LOANS SHALL NOT BE
+              TO THE MAXIMUM EXTENT PERMITTED BY LAW, Ryer Loans SHALL NOT BE
               LIABLE FOR INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR
               PUNITIVE DAMAGES, OR ANY LOSS OF PROFITS OR DATA, ARISING FROM
               YOUR USE OF THIS SITE. OUR AGGREGATE LIABILITY SHALL NOT EXCEED

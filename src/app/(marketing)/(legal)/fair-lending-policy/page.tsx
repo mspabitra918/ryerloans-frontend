@@ -9,7 +9,7 @@ export const metadata = constructMetadata({
   path: "/fair-lending-policy",
   keywords: [
     "fair lending policy",
-    "equal credit opportunity act ryer loans",
+    "equal credit opportunity act Ryer Loans",
     "ecoa disclosure",
     "non discrimination lending",
   ],
