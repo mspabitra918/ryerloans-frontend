@@ -40,7 +40,7 @@ export const payFrequencyOptions = [
   },
   {
     label: "Semimonthly",
-    value: "Semimonthly",
+    value: "Semi-Monthly",
   },
   {
     label: "Monthly",
@@ -224,8 +224,6 @@ export const BALANCE_BANDS = [
   "Over $2,500",
 ] as const;
 
-export const ACCOUNT_AGE_BANDS = ["<3", "3-6", "6-12", "12-24", "24+"] as const;
-
 export const accountTypeOptions = [
   {
     label: "Checking",
@@ -244,11 +242,11 @@ export const accountAgeOptions = [
   },
   {
     label: "3–6 months",
-    value: "3-6",
+    value: "3–6",
   },
   {
     label: "6–12 months",
-    value: "6-12",
+    value: "6–12",
   },
   {
     label: "1–2 years",

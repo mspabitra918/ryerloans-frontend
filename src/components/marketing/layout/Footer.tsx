@@ -136,6 +136,17 @@ export default function Footer() {
           >
             Do Not Sell My Info
           </Link>
+          {/* Reviews was linked only from a noindex borrower page — an orphan
+              everywhere a crawler could actually reach. */}
+          <Link href="/reviews" className="hover:text-white transition">
+            Reviews
+          </Link>
+          <Link href="/sitemap" className="hover:text-white transition">
+            Site Map
+          </Link>
+          <Link href="/search" className="hover:text-white transition">
+            Search
+          </Link>
         </div>
 
         {/* Copyright */}

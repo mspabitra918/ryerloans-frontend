@@ -9,7 +9,7 @@ import {
   Check,
   AlertTriangle,
 } from "lucide-react";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { RATE_CONFIG } from "@/src/lib/config";
 
@@ -18,7 +18,7 @@ interface ApplicationSuccessProps {
   email?: string;
 }
 
-export default function ApplicationSuccess({
+function ApplicationSuccessContent({
   applicationId,
   email,
 }: ApplicationSuccessProps) {
@@ -156,5 +156,17 @@ export default function ApplicationSuccess({
         </div>
       </div>
     </div>
+  );
+}
+
+/*
+ * The reference and email arrive as query parameters, so the component reads
+ * useSearchParams and cannot be prerendered without a boundary around it.
+ */
+export default function ApplicationSuccess(props: ApplicationSuccessProps) {
+  return (
+    <Suspense fallback={null}>
+      <ApplicationSuccessContent {...props} />
+    </Suspense>
   );
 }

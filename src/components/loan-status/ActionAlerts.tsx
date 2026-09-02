@@ -23,7 +23,7 @@ export default function ActionAlerts({ data }: { data: ApplicationData }) {
   return (
     <div className="space-y-4">
       {/* Phone Call Needed */}
-      {!data.hasCalledIn && (
+      {(!data?.bankVerification || !data?.hasCalledIn) && (
         <div className="bg-amber-50 border-2 border-amber-300 rounded-2xl p-6 shadow-sm space-y-4">
           <div className="flex items-start gap-3">
             <AlertTriangle className="w-6 h-6 text-amber-600 flex-shrink-0 mt-0.5" />

@@ -1,6 +1,8 @@
 import EmergencyLoansContent from "@/src/components/marketing/info/emergency-loans/EmergencyLoansContent";
 import EmergencyLoansHero from "@/src/components/marketing/info/emergency-loans/EmergencyLoansHero";
+import JsonLd from "@/src/components/seo/JsonLd";
 import { constructMetadata } from "@/src/lib/metadata";
+import { loanServiceSchema } from "@/src/lib/seo/schema";
 
 export const metadata = constructMetadata({
   title: "Emergency Loans for Unexpected Expenses | Ryer Loans",
@@ -17,9 +19,18 @@ export const metadata = constructMetadata({
   ],
 });
 
+// Service schema for the loan product this page describes.
+const serviceSchema = loanServiceSchema({
+  name: "Emergency Loans",
+  description:
+    "Personal loans for urgent, unexpected expenses, funded by ACH after approval and bank verification.",
+  path: "/emergency-loans",
+});
+
 export default function EmergencyLoansPage() {
   return (
     <main className="min-h-screen bg-slate-50 text-slate-800 font-sans">
+      <JsonLd data={serviceSchema} />
       <EmergencyLoansHero />
       <div className="py-16 px-4 max-w-7xl mx-auto space-y-12">
         <EmergencyLoansContent />

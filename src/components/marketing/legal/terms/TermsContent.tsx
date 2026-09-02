@@ -203,7 +203,7 @@ export default function TermsContent() {
               By using this site you consent to receive communications
               electronically. See our{" "}
               <Link
-                href="/esign-consent"
+                href="/e-sign-consent"
                 className="text-sky-600 font-medium underline hover:text-sky-700"
               >
                 E-Sign Consent

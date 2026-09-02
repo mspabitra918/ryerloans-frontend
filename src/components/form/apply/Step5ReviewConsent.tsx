@@ -1,3 +1,4 @@
+"use client";
 import { ApplicationFormData } from "@/src/lib/types/application";
 import { api } from "@/src/lib/api";
 import FormConsent from "../../ui/FormConsent";
@@ -7,6 +8,7 @@ import FormReviewRow from "../../ui/FormReviewRow";
 import FormSection from "../../ui/FormSection";
 import Link from "next/link";
 import { RATE_CONFIG } from "@/src/lib/config";
+import { useState } from "react";
 
 interface Props {
   data: ApplicationFormData;
@@ -21,6 +23,7 @@ export default function Step5ReviewConsent({
   onBack,
   onEdit,
 }: Props) {
+  const [isSubmitting, setIsSubmitting] = useState(false);
   // Checkboxes 1, 2, and 3 are required. Checkbox 4 (TCPA) is strictly optional.
   const requiredConsents =
     Boolean(data.consent.esign) &&
@@ -28,9 +31,10 @@ export default function Step5ReviewConsent({
     Boolean(data.consent.creditPull);
 
   const submitApplication = async () => {
-    if (!requiredConsents) {
+    if (!requiredConsents || isSubmitting) {
       return;
     }
+    setIsSubmitting(true);
 
     try {
       const qs = new URLSearchParams(window.location.search);
@@ -54,14 +58,14 @@ export default function Step5ReviewConsent({
         city: data.personal.city,
         state: data.personal.state,
         zip: data.personal.zip,
-        years_at_address: data.personal.yearsAtAddress,
+        years_at_address: Number(data.personal.yearsAtAddress),
         housing_status: data.personal.housingStatus,
-        monthly_housing_cost: data.personal.monthlyHousingCost,
+        monthly_housing_cost: Number(data.personal.monthlyHousingCost),
 
         employment_status: data.employment.employmentStatus,
         employer_name: data.employment.employerName,
         job_title: data.employment.jobTitle,
-        employment_length_mo: data.employment.employmentLengthMo,
+        employment_length_mo: Number(data.employment.employmentLengthMo),
         employer_phone: data.employment.employerPhone,
         pay_frequency: data.employment.payFrequency,
         next_pay_date: data.employment.nextPayDate,
@@ -69,7 +73,7 @@ export default function Step5ReviewConsent({
         income_source: data.employment.incomeSource,
 
         owns_vehicle: data.employment.ownsVehicle,
-        vehicle_year: data.employment.vehicleYear,
+        vehicle_year: Number(data.employment.vehicleYear),
         vehicle_make: data.employment.vehicleMake,
         vehicle_model: data.employment.vehicleModel,
         vehicle_paid_off: data.employment.vehiclePaidOff,
@@ -106,13 +110,16 @@ export default function Step5ReviewConsent({
         form_started_at: qs.get("form_started_at") || new Date().toISOString(),
       };
 
-      await api.apply(payload as any);
+      const response = await api.apply(payload as any);
 
       window.location.href = `/apply/success?reference=${encodeURIComponent(
         response.reference,
-      )}&email=${encodeURIComponent(formData.email)}`;
+      )}&email=${encodeURIComponent(data.personal.email)}`;
     } catch (error) {
+      setIsSubmitting(false);
       console.error(error);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -403,6 +410,7 @@ export default function Step5ReviewConsent({
           onNext={submitApplication}
           nextLabel="Submit Application"
           nextDisabled={!requiredConsents}
+          isLoading={isSubmitting}
         />
 
         {/* Submit button microcopy */}

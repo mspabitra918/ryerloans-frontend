@@ -154,7 +154,7 @@ export default function Step3EmploymentIncome({
                     value={data.employmentLengthMo}
                     onChange={(event) =>
                       update({
-                        employmentLengthMo: event.target.value,
+                        employmentLengthMo: Number(event.target.value),
                       })
                     }
                     placeholder="e.g. 24"
@@ -273,7 +273,7 @@ export default function Step3EmploymentIncome({
               if (value === "no") {
                 update({
                   ownsVehicle: false,
-                  vehicleYear: "",
+                  vehicleYear: 0,
                   vehicleMake: "",
                   vehicleModel: "",
                   vehiclePaidOff: null,
@@ -308,7 +308,7 @@ export default function Step3EmploymentIncome({
                     value={data.vehicleYear}
                     onChange={(event) =>
                       update({
-                        vehicleYear: event.target.value,
+                        vehicleYear: Number(event.target.value),
                       })
                     }
                     placeholder="2022"

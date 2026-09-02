@@ -1,5 +1,7 @@
 import React from "react";
 import Link from "next/link";
+import { californiaCities } from "@/src/data/california-cities";
+import { constructMetadata } from "@/src/lib/metadata";
 import {
   ShieldCheck,
   MapPin,
@@ -12,6 +14,19 @@ import {
   Sparkles,
   Scale,
 } from "lucide-react";
+
+export const metadata = constructMetadata({
+  title: "Personal Loans in California — City by City",
+  description:
+    "City-level personal loan pages for California residents: local economic context, borrowing resources, and the same fixed 10.00% APR statewide.",
+  path: "/personal-loans/california",
+  keywords: [
+    "california personal loans",
+    "personal loans california",
+    "ca loans by city",
+    "dfpi licensed lender",
+  ],
+});
 
 const CITIES = [
   {
@@ -137,6 +152,13 @@ const CITIES = [
 ];
 
 export default function CaliforniaHubPage() {
+  /*
+   * Only cities with a page behind them. The directory listing and the city
+   * dataset drifted apart once already, which put a link to a 404 on the hub —
+   * filtering against the dataset makes that impossible rather than unlikely.
+   */
+  const cities = CITIES.filter((city) => city.slug in californiaCities);
+
   return (
     <div className="min-h-screen bg-white text-slate-100 font-sans selection:bg-sky-500 selection:text-slate-950">
       {/* HERO SECTION */}
@@ -362,12 +384,12 @@ export default function CaliforniaHubPage() {
             </h2>
           </div>
           <p className="text-sm text-slate-500 font-mono">
-            {CITIES.length} Cities Active Statewide
+            {cities.length} Cities Active Statewide
           </p>
         </div>
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {CITIES.map((city) => (
+          {cities.map((city) => (
             <Link
               key={city.slug}
               href={`/personal-loans/california/${city.slug}`}

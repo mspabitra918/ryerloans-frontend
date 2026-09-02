@@ -16,7 +16,7 @@ export default function AboutCommitments() {
           sex, marital status, age, receipt of public assistance, or the
           exercise of rights under consumer credit law. See our{" "}
           <Link
-            href="/fair-lending"
+            href="/fair-lending-policy"
             className="text-sky-600 underline font-medium hover:text-sky-700"
           >
             [Fair Lending Policy]
@@ -32,7 +32,7 @@ export default function AboutCommitments() {
           Bank-grade encryption, strict internal access controls, and a written
           information security program. See our{" "}
           <Link
-            href="/security"
+            href="/security-policy"
             className="text-sky-600 underline font-medium hover:text-sky-700"
           >
             [Security Policy]

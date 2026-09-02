@@ -26,16 +26,16 @@ export type ApplicationFormData = {
     state: string;
     zip: string;
 
-    yearsAtAddress: string;
+    yearsAtAddress: number;
     housingStatus: string;
-    monthlyHousingCost: string;
+    monthlyHousingCost: number;
   };
 
   employment: {
     employmentStatus: string;
     employerName: string;
     jobTitle: string;
-    employmentLengthMo: string;
+    employmentLengthMo: number;
     employerPhone: string;
 
     payFrequency: string;
@@ -45,7 +45,7 @@ export type ApplicationFormData = {
     incomeSource: string;
 
     ownsVehicle: boolean | null;
-    vehicleYear: string;
+    vehicleYear: number;
     vehicleMake: string;
     vehicleModel: string;
     vehiclePaidOff: boolean | null;
@@ -100,14 +100,14 @@ export const initialData: ApplicationFormData = {
 
     yearsAtAddress: "",
     housingStatus: "",
-    monthlyHousingCost: "",
+    monthlyHousingCost: 0,
   },
 
   employment: {
     employmentStatus: "",
     employerName: "",
     jobTitle: "",
-    employmentLengthMo: "",
+    employmentLengthMo: 0,
     employerPhone: "",
 
     payFrequency: "",
@@ -117,7 +117,7 @@ export const initialData: ApplicationFormData = {
     incomeSource: "",
 
     ownsVehicle: null,
-    vehicleYear: "",
+    vehicleYear: 0,
     vehicleMake: "",
     vehicleModel: "",
     vehiclePaidOff: null,

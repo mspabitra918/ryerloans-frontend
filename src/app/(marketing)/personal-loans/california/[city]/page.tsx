@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { californiaCities } from "@/src/data/california-cities";
+import { SITE_CONFIG } from "@/src/lib/config";
 import CityLoanPage from "@/src/components/marketing/city-loans/CityLoanPage";
 
 interface PageProps {
@@ -26,9 +27,30 @@ export async function generateMetadata({
     return {};
   }
 
+  /*
+   * `data.title` already carries the brand suffix, so it is used verbatim
+   * rather than through constructMetadata, which would append a second one.
+   * The canonical is still self-referencing and absolute.
+   */
+  const url = `${SITE_CONFIG.url}/personal-loans/california/${data.slug}`;
+
   return {
     title: data.title,
     description: data.description,
+    metadataBase: new URL(SITE_CONFIG.url),
+    alternates: { canonical: url },
+    openGraph: {
+      title: data.title,
+      description: data.description,
+      url,
+      siteName: SITE_CONFIG.name,
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: data.title,
+      description: data.description,
+    },
   };
 }
 

@@ -6,15 +6,17 @@ export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const redirectPaths = [
     // "/thank-you",
-    "/admin",
+    // "/admin",
     // "/personal-loans/california",
     // "/loan-status",
     // "bank-verification",
     // "/apply",
-    "/reviews",
-    "sign-agreement",
-    "confirm-deposit",
-    "/investments",
+    // "/reviews",
+    // "sign-agreement",
+    // "confirm-deposit",
+    // "/investments",
+    "/documents",
+    "/review",
   ];
 
   const submitted = request.cookies.get("applicationSubmitted");
@@ -50,14 +52,14 @@ export function proxy(request: NextRequest) {
 export const config = {
   matcher: [
     "/thank-you",
-    "/admin/:path*",
-    "/personal-loans/:path*",
-    "/personal-loans/california",
-    "/personal-loans/california/:path*",
-    "/loan-status/:path*",
-    "/apply/:path*",
-    "/reviews/:path*",
-    "/bank-verification/:path*",
-    "/investments/:path*",
+    // "/admin/:path*",
+    // "/personal-loans/:path*",
+    // "/personal-loans/california",
+    // "/personal-loans/california/:path*",
+    // "/loan-status/:path*",
+    // "/apply/:path*",
+    // "/reviews/:path*",
+    // "/bank-verification/:path*",
+    // "/investments/:path*",
   ],
 };

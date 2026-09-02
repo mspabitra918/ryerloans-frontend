@@ -197,14 +197,14 @@ export default function PersonalLoansContent() {
             <div className="pt-2 text-xs text-slate-500 flex flex-wrap gap-4">
               <span>Related Guides:</span>
               <Link
-                href="/personal-loans/debt-consolidation"
+                href="/debt-consolidation-loans"
                 className="text-sky-600 font-semibold hover:underline inline-flex items-center gap-1"
               >
                 Debt Consolidation Strategies{" "}
                 <ChevronRight className="w-3 h-3" />
               </Link>
               <Link
-                href="/how-it-works"
+                href="/how-personal-loan-approval-works"
                 className="text-sky-600 font-semibold hover:underline inline-flex items-center gap-1"
               >
                 Application Workflow <ChevronRight className="w-3 h-3" />
@@ -340,7 +340,7 @@ export default function PersonalLoansContent() {
                   </div>
                 </div>
                 <Link
-                  href="/rates-and-terms"
+                  href="/personal-loan-rates-and-terms"
                   className="inline-flex items-center justify-center gap-2 bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold text-xs px-5 py-2.5 rounded-lg transition"
                 >
                   <span>Review Rates &amp; Terms</span>

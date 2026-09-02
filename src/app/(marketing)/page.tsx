@@ -7,7 +7,9 @@ import ReadyToStart from "@/src/components/marketing/home/ReadyToStart";
 import RepresentativeExample from "@/src/components/marketing/home/RepresentativeExample";
 import SingleRate from "@/src/components/marketing/home/SingleRate";
 import WhatWeNeverDo from "@/src/components/marketing/home/WhatWeNeverDo";
+import JsonLd from "@/src/components/seo/JsonLd";
 import { constructMetadata } from "@/src/lib/metadata";
+import { webSiteSchema } from "@/src/lib/seo/schema";
 
 export const metadata = constructMetadata({
   title: "Personal Loans $2,000–$25,000 at 10% Fixed APR",
@@ -25,6 +27,8 @@ export const metadata = constructMetadata({
 export default function HomePage() {
   return (
     <main className="min-h-screen bg-[#030712]">
+      {/* WebSite + SearchAction belongs on the home page only. */}
+      <JsonLd data={webSiteSchema()} />
       <HeroSection />
       <SingleRate />
       <RepresentativeExample />

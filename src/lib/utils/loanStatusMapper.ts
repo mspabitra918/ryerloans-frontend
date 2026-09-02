@@ -35,6 +35,7 @@ export function toApplicationData(
     fundingStatus: fundingStatus(tracker.final_status.status),
     accountEnding: response.account_last4 ?? undefined,
     bankVerificationUrl: response.bank_verification_url ?? undefined,
+    bankVerification: response.bank_verified,
 
     fundedDate:
       tracker.final_status.status === "funded"

@@ -412,7 +412,7 @@ export default function Step2PersonalDetails({
             />
           </FormField>
 
-          <FormField label="Years at Address" htmlFor="years-at-address">
+          {/* <FormField label="Years at Address" htmlFor="years-at-address">
             <FormSelect
               id="years-at-address"
               value={data.yearsAtAddress}
@@ -423,6 +423,22 @@ export default function Step2PersonalDetails({
               }
               options={yearsAtAddressOptions}
               placeholder="Select years"
+            />
+          </FormField> */}
+
+          <FormField label="Years at Address" htmlFor="years-at-address">
+            <FormInput
+              id="years-at-address"
+              type="number"
+              inputMode="numeric"
+              min={0}
+              value={data.yearsAtAddress}
+              onChange={(event) =>
+                update({
+                  yearsAtAddress: Number(event.target.value),
+                })
+              }
+              placeholder="0"
             />
           </FormField>
 
@@ -438,7 +454,7 @@ export default function Step2PersonalDetails({
               value={data.monthlyHousingCost}
               onChange={(event) =>
                 update({
-                  monthlyHousingCost: event.target.value,
+                  monthlyHousingCost: Number(event.target.value),
                 })
               }
               placeholder="$0"

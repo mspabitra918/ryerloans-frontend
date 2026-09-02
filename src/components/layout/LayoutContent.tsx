@@ -2,6 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import Navbar from "./Navbar";
+import Breadcrumbs from "../seo/Breadcrumbs";
 import Footer from "../marketing/layout/Footer";
 
 export function LayoutContent({ children }: { children: React.ReactNode }) {
@@ -31,6 +32,7 @@ export function LayoutContent({ children }: { children: React.ReactNode }) {
   return (
     <>
       {!hideHeaderFooter && <Navbar />}
+      {!hideHeaderFooter && <Breadcrumbs />}
       <main className="flex-1">{children}</main>
       {!hideFooter && <Footer />}
     </>

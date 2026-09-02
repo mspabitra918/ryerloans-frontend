@@ -1,6 +1,8 @@
 import InstallmentLoansContent from "@/src/components/marketing/info/installment-loans/InstallmentLoansContent";
 import InstallmentLoansHero from "@/src/components/marketing/info/installment-loans/InstallmentLoansHero";
+import JsonLd from "@/src/components/seo/JsonLd";
 import { constructMetadata } from "@/src/lib/metadata";
+import { loanServiceSchema } from "@/src/lib/seo/schema";
 
 export const metadata = constructMetadata({
   title: "Online Installment Loans With Monthly Payments | Ryer Loans",
@@ -17,9 +19,18 @@ export const metadata = constructMetadata({
   ],
 });
 
+// Service schema for the loan product this page describes.
+const serviceSchema = loanServiceSchema({
+  name: "Installment Loans",
+  description:
+    "Lump-sum loans repaid in fixed monthly instalments over 12 to 60 months at a fixed 10.00% APR.",
+  path: "/installment-loans",
+});
+
 export default function InstallmentLoansPage() {
   return (
     <main className="min-h-screen bg-slate-50 text-slate-800 font-sans">
+      <JsonLd data={serviceSchema} />
       <InstallmentLoansHero />
       <div className="py-16 px-4 max-w-7xl mx-auto space-y-12">
         <InstallmentLoansContent />

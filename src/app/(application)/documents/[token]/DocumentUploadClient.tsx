@@ -30,6 +30,7 @@ export default function DocumentUploadClient({ token }: { token: string }) {
   const [loadError, setLoadError] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [busyType, setBusyType] = useState<string | null>(null);
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
   const load = useCallback(async () => {
     try {
@@ -57,6 +58,7 @@ export default function DocumentUploadClient({ token }: { token: string }) {
     if (!picked?.length || !view) return;
 
     setError(null);
+    setSuccessMessage(null);
     setBusyType(docType);
 
     const added: BorrowerDocument[] = [];
@@ -71,6 +73,9 @@ export default function DocumentUploadClient({ token }: { token: string }) {
         }
 
         added.push(await api.uploadDocument(token, docType, file));
+        setSuccessMessage(
+          `"${file.name}" has been uploaded and sent to our team.`,
+        );
       }
     } catch (err) {
       setError(
@@ -132,6 +137,17 @@ export default function DocumentUploadClient({ token }: { token: string }) {
           />
         ))}
       </ul>
+      {successMessage ? (
+        <p
+          role="status"
+          className="mt-4 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-800"
+        >
+          <span className="mr-2 font-semibold">✓</span>
+          {successMessage}
+        </p>
+      ) : null}
+
+      <p className="mt-6 text-sm text-slate-500">{describeLimits(view)}</p>
 
       <p className="mt-6 text-sm text-slate-500">{describeLimits(view)}</p>
 
@@ -196,14 +212,24 @@ function ChecklistRow({
           <span className="font-medium text-slate-900">{label}</span>
         </div>
 
-        <button
+        {/* <button
           type="button"
           onClick={() => inputRef.current?.click()}
           disabled={disabled}
           className="rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium text-slate-800 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50"
         >
           {busy ? "Uploading…" : files.length ? "Add another" : "Add file"}
-        </button>
+        </button> */}
+        {files.length === 0 && (
+          <button
+            type="button"
+            onClick={() => inputRef.current?.click()}
+            disabled={disabled}
+            className="rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium text-slate-800 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50"
+          >
+            {busy ? "Uploading…" : "Add file"}
+          </button>
+        )}
 
         <input
           ref={inputRef}
@@ -229,9 +255,7 @@ function ChecklistRow({
               <span aria-hidden className="text-emerald-600">
                 ✓
               </span>
-              <span className="min-w-0 truncate">
-                {file.original_filename}
-              </span>
+              <span className="min-w-0 truncate">{file.original_filename}</span>
               <span className="ml-auto shrink-0 text-xs text-slate-500">
                 {formatBytes(file.size_bytes)} · sent
               </span>

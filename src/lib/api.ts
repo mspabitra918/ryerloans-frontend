@@ -233,6 +233,53 @@ export interface DocumentRequestView {
   accepted_mime_types: string[];
 }
 
+/** §11 display-name formats. The borrower picks the shape, we render it. */
+export type DisplayNamePreference =
+  "full_name" | "first_initial" | "first_city";
+
+/**
+ * The post-funding review invitation, as the borrower's form renders it.
+ *
+ * Deliberately thin: the token in the URL is the only thing identifying this
+ * borrower, so the response says who they are, what their name would look like
+ * published, and nothing about their loan.
+ */
+export interface ReviewInvitationView {
+  reference: string;
+  first_name: string;
+  already_submitted: boolean;
+  expires_at: string;
+  display_name_options: Array<{
+    value: DisplayNamePreference;
+    label: string;
+    preview: string;
+  }>;
+}
+
+export interface ReviewSubmission {
+  rating: number;
+  review_text: string;
+  display_name_preference: DisplayNamePreference;
+  consent_to_publish: boolean;
+}
+
+/** One published review, as /reviews renders it. */
+export interface PublicReview {
+  id: string;
+  rating: number;
+  review_text: string;
+  display_name: string;
+  submitted_at: string;
+}
+
+export interface PublicReviewsResponse {
+  reviews: PublicReview[];
+  total: number;
+  average_rating: number | null;
+  /** §11: Review / AggregateRating markup activates at five published. */
+  schema_ready: boolean;
+}
+
 export const api = {
   // Submit a new loan application. Returns the reference the applicant uses to
   // look the application up later.
@@ -354,6 +401,33 @@ export const api = {
       `/documents/${encodeURIComponent(token)}`,
       form,
     );
+  },
+
+  // --- Post-funding review (§8.4 invitation) --------------------------------
+  //
+  // Same shape as the document link: the token is in the path, names exactly
+  // one invitation, and expires. Nothing here is reachable without it.
+
+  async publishedReviews(limit = 50) {
+    return request<PublicReviewsResponse>(`/reviews/public?limit=${limit}`);
+  },
+
+  async reviewInvitation(token: string) {
+    return request<ReviewInvitationView>(
+      `/reviews/invite/${encodeURIComponent(token)}`,
+    );
+  },
+
+  async submitReview(token: string, payload: ReviewSubmission) {
+    return request<{
+      submitted_at: string;
+      rating: number;
+      display_name: string;
+      consent_to_publish: boolean;
+    }>(`/reviews/invite/${encodeURIComponent(token)}/submit`, {
+      method: "POST",
+      body: JSON.stringify(payload),
+    });
   },
 
   // --- Admin ---------------------------------------------------------------

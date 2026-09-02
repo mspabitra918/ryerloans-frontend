@@ -3,6 +3,7 @@ interface FormNavigationProps {
   onNext?: () => void;
   nextLabel?: string;
   nextDisabled?: boolean;
+  isLoading?: boolean;
 }
 
 export default function FormNavigation({
@@ -10,6 +11,7 @@ export default function FormNavigation({
   onNext,
   nextLabel = "Continue",
   nextDisabled = false,
+  isLoading = false,
 }: FormNavigationProps) {
   return (
     <div className="mt-8 flex flex-col-reverse gap-3 border-t border-slate-200 pt-6 sm:flex-row sm:items-center sm:justify-between">
@@ -17,7 +19,8 @@ export default function FormNavigation({
         <button
           type="button"
           onClick={onBack}
-          className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-slate-300 bg-white px-6 py-3.5 text-sm font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50 sm:w-auto"
+          disabled={isLoading}
+          className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-slate-300 bg-white px-6 py-3.5 text-sm font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
         >
           <span>←</span>
           Back
@@ -29,12 +32,21 @@ export default function FormNavigation({
       {onNext && (
         <button
           type="button"
-          disabled={nextDisabled}
+          disabled={nextDisabled || isLoading}
           onClick={onNext}
           className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-green-600 px-7 py-3.5 text-sm font-semibold text-white shadow-sm transition hover:bg-green-700 disabled:cursor-not-allowed disabled:bg-slate-300 sm:w-auto"
         >
-          {nextLabel}
-          <span>→</span>
+          {isLoading ? (
+            <>
+              <span className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
+              <span>Submitting...</span>
+            </>
+          ) : (
+            <>
+              <span>{nextLabel}</span>
+              <span>→</span>
+            </>
+          )}
         </button>
       )}
     </div>

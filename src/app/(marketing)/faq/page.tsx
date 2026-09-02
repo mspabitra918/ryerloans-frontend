@@ -215,11 +215,11 @@ export default function FaqPage() {
       items: [
         {
           q: "How is my information protected?",
-          a: "256-bit encryption in transit, AES-256 encryption at rest, field-level encryption on your SSN and account numbers, strict role-based internal access, and a written information security program. See [Security Policy](/security).",
+          a: "256-bit encryption in transit, AES-256 encryption at rest, field-level encryption on your SSN and account numbers, strict role-based internal access, and a written information security program. See [Security Policy](/security-policy).",
         },
         {
           q: "Do you sell my information?",
-          a: "No. We do not sell personal information to third parties for their own marketing. See [Privacy Policy](/privacy).",
+          a: "No. We do not sell personal information to third parties for their own marketing. See [Privacy Policy](/privacy-policy).",
         },
         {
           q: "Why do you need my SSN?",
