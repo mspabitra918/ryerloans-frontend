@@ -15,14 +15,15 @@ export function proxy(request: NextRequest) {
     // "sign-agreement",
     // "confirm-deposit",
     // "/investments",
-    "/documents",
+    // "/documents",
     "/review",
+    "/reviews",
   ];
 
-  const submitted = request.cookies.get("applicationSubmitted");
-  if (pathname === "/thank-you" && !submitted) {
-    return NextResponse.redirect(new URL("/", request.url));
-  }
+  // const submitted = request.cookies.get("applicationSubmitted");
+  // if (pathname === "/thank-you" && !submitted) {
+  //   return NextResponse.redirect(new URL("/", request.url));
+  // }
 
   if (
     redirectPaths.some(
@@ -51,7 +52,7 @@ export function proxy(request: NextRequest) {
 
 export const config = {
   matcher: [
-    "/thank-you",
+    // "/thank-you",
     // "/admin/:path*",
     // "/personal-loans/:path*",
     // "/personal-loans/california",
@@ -61,5 +62,8 @@ export const config = {
     // "/reviews/:path*",
     // "/bank-verification/:path*",
     // "/investments/:path*",
+    // "/documents/:path*",
+    "/review/:path*",
+    "/reviews/:path*",
   ],
 };

@@ -98,7 +98,7 @@ export const initialData: ApplicationFormData = {
     state: "",
     zip: "",
 
-    yearsAtAddress: "",
+    yearsAtAddress: 0,
     housingStatus: "",
     monthlyHousingCost: 0,
   },
