@@ -9,6 +9,14 @@ import FormSection from "../../ui/FormSection";
 import Link from "next/link";
 import { RATE_CONFIG } from "@/src/lib/config";
 import { useState } from "react";
+import { toast } from "sonner";
+
+// 1. Add this interface near your imports
+interface ApiError {
+  message: string;
+  error: string;
+  statusCode: number;
+}
 
 interface Props {
   data: ApplicationFormData;
@@ -23,6 +31,7 @@ export default function Step5ReviewConsent({
   onBack,
   onEdit,
 }: Props) {
+  const [apiError, setApiError] = useState<ApiError | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   // Checkboxes 1, 2, and 3 are required. Checkbox 4 (TCPA) is strictly optional.
   const requiredConsents =
@@ -91,15 +100,15 @@ export default function Step5ReviewConsent({
         consent_credit_pull: data.consent.creditPull,
         consent_tcpa: data.consent.tcpa,
         consent_tcpa_text: `I authorize Ryer Loans, its affiliates, and its service providers
-              to contact me at the telephone number(s) and email address I have
-              provided, including my wireless number, using automatic telephone
-              dialing systems, artificial or prerecorded voice messages,
-              ringless voicemail, text/SMS messages, and email — for purposes
-              including servicing my application, marketing, and offers of
-              products and services. I understand message and data rates may
-              apply, that message frequency varies, that I may reply STOP to any
-              text message to opt out or HELP for help, and that I may revoke
-              this consent at any time by calling`,
+            to contact me at the telephone number(s) and email address I have
+            provided, including my wireless number, using automatic telephone
+            dialing systems, artificial or prerecorded voice messages,
+            ringless voicemail, text/SMS messages, and email — for purposes
+            including servicing my application, marketing, and offers of
+            products and services. I understand message and data rates may
+            apply, that message frequency varies, that I may reply STOP to any
+            text message to opt out or HELP for help, and that I may revoke
+            this consent at any time by calling`,
         consent_esign_at: new Date().toISOString(),
 
         referrer: document.referrer || undefined,
@@ -112,17 +121,39 @@ export default function Step5ReviewConsent({
 
       const response = await api.apply(payload as any);
 
+      // Safely check status code with type assertions to avoid TS2339
+      const responseObj = response as Record<string, any>;
+      const statusCode = Number(responseObj?.statusCode || responseObj?.status);
+
+      if (responseObj && (statusCode >= 400 || responseObj.ok === false)) {
+        const errorMessage =
+          responseObj.message || "You already have an application in progress.";
+
+        toast.error("Application Conflict", {
+          description: errorMessage,
+          duration: 6000,
+        });
+        return;
+      }
+
       window.location.href = `/apply/success?reference=${encodeURIComponent(
-        response.reference,
+        response.reference || responseObj.id,
       )}&email=${encodeURIComponent(data.personal.email)}`;
-    } catch (error) {
-      setIsSubmitting(false);
-      console.error(error);
+    } catch (error: any) {
+      console.error("Submission failed:", error);
+
+      const errorMessage =
+        error?.message || "You already have an application in progress.";
+
+      // Display the error notification toast
+      toast.error("Application Error", {
+        description: errorMessage,
+        duration: 6000,
+      });
     } finally {
       setIsSubmitting(false);
     }
   };
-
   return (
     <FormSection
       title="Review & Consent"

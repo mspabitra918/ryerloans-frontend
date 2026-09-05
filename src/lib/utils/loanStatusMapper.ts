@@ -47,6 +47,11 @@ export function toApplicationData(
         ? formatDate(tracker.final_status.timestamp)
         : undefined,
 
+    withdrawnDate:
+      tracker.final_status.status === "withdrawn"
+        ? formatDate(tracker.final_status.timestamp)
+        : undefined,
+
     reapplyDate:
       formatDate(response.adverse_action?.reapply_eligible_date ?? null) ??
       undefined,
@@ -69,6 +74,7 @@ function depositStatus(value: string): ApplicationData["depositStatus"] {
 function fundingStatus(value: string): ApplicationData["fundingStatus"] {
   if (value === "funded") return "funded";
   if (value === "declined") return "declined";
+  if (value === "withdrawn") return "withdrawn";
   return "pending";
 }
 

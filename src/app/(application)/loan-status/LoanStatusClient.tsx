@@ -9,6 +9,7 @@ import StatusBanner from "@/src/components/loan-status/StatusBanner";
 import ActionAlerts from "@/src/components/loan-status/ActionAlerts";
 import ProgressTimeline from "@/src/components/loan-status/ProgressTimeline";
 import SecurityNotice from "@/src/components/loan-status/SecurityNotice";
+import LoanStatusHero from "@/src/components/loan-status/LoanStatusHero";
 
 export default function LoanStatusClient() {
   const [loading, setLoading] = useState(false);
@@ -40,41 +41,34 @@ export default function LoanStatusClient() {
   };
 
   return (
-    <div className="w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-10 text-slate-700">
+    <div className="space-y-8">
       {/* Title */}
-      <div className="text-center space-y-3">
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-          Check Your Application Status
-        </h1>
-        <p className="text-slate-600 text-sm sm:text-base max-w-lg mx-auto">
-          Enter your six-digit Application ID and the email address you applied
-          with.
-        </p>
+      <LoanStatusHero />
+      <div className="w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-10 text-slate-700">
+        {/* Form */}
+        <StatusLookupForm onLookup={handleLookup} loading={loading} />
+
+        {error ? (
+          <p
+            role="alert"
+            className="mx-auto max-w-lg rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-center text-sm text-red-800"
+          >
+            {error}
+          </p>
+        ) : null}
+
+        {/* Results View */}
+        {appData && (
+          <div className="space-y-8 animate-in fade-in duration-300">
+            <StatusBanner data={appData} />
+            <ActionAlerts data={appData} />
+            <ProgressTimeline data={appData} />
+          </div>
+        )}
+
+        {/* Footer Security */}
+        <SecurityNotice />
       </div>
-
-      {/* Form */}
-      <StatusLookupForm onLookup={handleLookup} loading={loading} />
-
-      {error ? (
-        <p
-          role="alert"
-          className="mx-auto max-w-lg rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-center text-sm text-red-800"
-        >
-          {error}
-        </p>
-      ) : null}
-
-      {/* Results View */}
-      {appData && (
-        <div className="space-y-8 animate-in fade-in duration-300">
-          <StatusBanner data={appData} />
-          <ActionAlerts data={appData} />
-          <ProgressTimeline data={appData} />
-        </div>
-      )}
-
-      {/* Footer Security */}
-      <SecurityNotice />
     </div>
   );
 }

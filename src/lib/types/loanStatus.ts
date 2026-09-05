@@ -13,7 +13,7 @@ export interface ApplicationData {
   bankStatus: "pending" | "completed";
   bankCompletedDate?: string;
   depositStatus: "not_started" | "sent" | "confirmed";
-  fundingStatus: "pending" | "funded" | "declined";
+  fundingStatus: "pending" | "funded" | "declined" | "withdrawn";
   accountEnding?: string;
   bankVerification: boolean;
   /**
@@ -27,4 +27,5 @@ export interface ApplicationData {
   firstPaymentDue?: string;
   declinedDate?: string;
   reapplyDate?: string;
+  withdrawnDate?: string;
 }
