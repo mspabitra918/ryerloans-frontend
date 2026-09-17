@@ -17,6 +17,10 @@ export default function Navbar() {
       name: "California Hub",
       href: "/personal-loans/california",
     },
+    {
+      name: "Review",
+      href: "/reviews",
+    },
   ];
 
   const resourceLinks = [

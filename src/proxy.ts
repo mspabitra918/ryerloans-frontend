@@ -25,13 +25,13 @@ export function proxy(request: NextRequest) {
   //   return NextResponse.redirect(new URL("/", request.url));
   // }
 
-  if (
-    redirectPaths.some(
-      (path) => pathname === path || pathname.startsWith(`${path}/`),
-    )
-  ) {
-    return NextResponse.redirect(new URL("/", request.url));
-  }
+  // if (
+  //   redirectPaths.some(
+  //     (path) => pathname === path || pathname.startsWith(`${path}/`),
+  //   )
+  // ) {
+  //   return NextResponse.redirect(new URL("/", request.url));
+  // }
 
   if (pathname === "/admin/login" || pathname.startsWith("/admin/login/")) {
     return NextResponse.next();
@@ -63,7 +63,7 @@ export const config = {
     // "/bank-verification/:path*",
     // "/investments/:path*",
     // "/documents/:path*",
-    "/review/:path*",
-    "/reviews/:path*",
+    // "/review/:path*",
+    // "/reviews/:path*",
   ],
 };
