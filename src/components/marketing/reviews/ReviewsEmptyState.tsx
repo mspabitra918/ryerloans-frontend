@@ -8,7 +8,7 @@ export default function ReviewsEmptyState() {
   return (
     <div className="py-16 px-4 max-w-7xl mx-auto space-y-12">
       {/* Developer / Attorney Warning Notice Callout */}
-      <div className="bg-amber-50 border border-amber-200 rounded-2xl p-5 sm:p-6 flex items-start gap-4">
+      {/* <div className="bg-amber-50 border border-amber-200 rounded-2xl p-5 sm:p-6 flex items-start gap-4">
         <AlertTriangle className="w-6 h-6 text-amber-600 flex-shrink-0 mt-0.5" />
         <div className="space-y-1 text-xs sm:text-sm text-amber-900 leading-relaxed">
           <span className="font-bold uppercase tracking-wider block text-amber-950">
@@ -20,7 +20,7 @@ export default function ReviewsEmptyState() {
             dynamically via post-funding verification links (Build Spec §11).
           </p>
         </div>
-      </div>
+      </div> */}
 
       {/* Main Copy Block for Launch */}
       <div className="bg-white border border-slate-200 rounded-2xl p-6 sm:p-10 shadow-sm space-y-6">
