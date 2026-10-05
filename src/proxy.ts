@@ -16,7 +16,7 @@ export function proxy(request: NextRequest) {
     // "confirm-deposit",
     // "/investments",
     // "/documents",
-    "/review",
+    // "/review",
     "/reviews",
   ];
 
@@ -25,13 +25,13 @@ export function proxy(request: NextRequest) {
   //   return NextResponse.redirect(new URL("/", request.url));
   // }
 
-  // if (
-  //   redirectPaths.some(
-  //     (path) => pathname === path || pathname.startsWith(`${path}/`),
-  //   )
-  // ) {
-  //   return NextResponse.redirect(new URL("/", request.url));
-  // }
+  if (
+    redirectPaths.some(
+      (path) => pathname === path || pathname.startsWith(`${path}/`),
+    )
+  ) {
+    return NextResponse.redirect(new URL("/", request.url));
+  }
 
   if (pathname === "/admin/login" || pathname.startsWith("/admin/login/")) {
     return NextResponse.next();
