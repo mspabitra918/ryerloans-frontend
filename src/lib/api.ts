@@ -7,7 +7,7 @@ import {
 } from "./types";
 
 export const API_BASE =
-  process.env.NEXT_PUBLIC_API_BASE_URL ?? " http://localhost:4000";
+  process.env.NEXT_PUBLIC_API_BASE_URL ?? " https://api.ryerloans.com";
 
 // export const API_BASE =
 // process.env.NEXT_PUBLIC_API_BASE_URL ??
@@ -235,7 +235,9 @@ export interface DocumentRequestView {
 
 /** §11 display-name formats. The borrower picks the shape, we render it. */
 export type DisplayNamePreference =
-  "full_name" | "first_initial" | "first_city";
+  | "full_name"
+  | "first_initial"
+  | "first_city";
 
 /**
  * The post-funding review invitation, as the borrower's form renders it.
