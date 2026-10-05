@@ -64,6 +64,6 @@ export const config = {
     // "/investments/:path*",
     // "/documents/:path*",
     // "/review/:path*",
-    // "/reviews/:path*",
+    "/reviews/:path*",
   ],
 };
