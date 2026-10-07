@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import { Fira_Code } from "next/font/google";
 import { Toaster } from "sonner";
 
@@ -89,6 +90,16 @@ export default function RootLayout({
   return (
     <html lang="en" className={firaCode.variable}>
       <head>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-XVRYGG9E63"
+          strategy="beforeInteractive"
+        />
+        <Script id="google-tag-init" strategy="beforeInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+function gtag(){window.dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-XVRYGG9E63');`}
+        </Script>
         <JsonLd data={sitewideSchema} />
       </head>
       <body className="flex min-h-screen flex-col bg-white font-sans text-slate-800 antialiased">
